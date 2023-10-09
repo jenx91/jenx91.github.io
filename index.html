@@ -10,11 +10,14 @@
         }
         #search-box {
             margin: 20px;
+            position: relative; /* Position the search box relative to its container */
         }
         #city-suggestions {
             display: none;
-            position: absolute;
-            z-index: 1;
+            position: absolute; /* Position the suggestion box absolutely */
+            top: 100%; /* Display below the search box */
+            left: 0;
+            width: 100%; /* Match the width of the search box */
             background-color: #f1f1f1;
         }
         .suggestion-item {
