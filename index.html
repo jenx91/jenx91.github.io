@@ -7,12 +7,24 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        #header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         #search-box {
             margin: 20px;
             text-align: center;
             width: 70%; /* Set the width of the search row */
             margin: 0 auto; /* Center the search row horizontally */
+            background-color: #fff;
+            padding: 10px;
         }
         .input-container {
             display: inline-block;
@@ -46,10 +58,12 @@
     </style>
 </head>
 <body>
-    <h1>Find Auto Repair Shops</h1>
+    <div id="header">
+        <h1>Book your next auto services today</h1>
+    </div>
     <div id="search-box">
         <div class="input-container" id="location-suggestions">
-            <input type="text" id="location" placeholder="Enter city or ZIP code">
+            <input type="text" id="location" placeholder="Enter city or ZIP code" onclick="getCurrentLocation()">
             <div id="city-suggestions"></div>
         </div>
         <div class="input-container">
@@ -103,6 +117,19 @@
         const defaultTime = `${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}`;
         timeSelect.value = defaultTime;
 
+        function getCurrentLocation() {
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+                    
+                    // You can use a reverse geocoding service to get the city or address from the coordinates.
+                    // Here, we're just setting the input field to "Current Location" as a placeholder.
+                    locationInput.value = "Current Location";
+                });
+            }
+        }
+
         locationInput.addEventListener("input", function () {
             const inputValue = this.value.trim();
             if (inputValue.length === 0) {
@@ -136,23 +163,6 @@
                 });
             } else {
                 citySuggestions.style.display = "none";
-            }
-        });
-
-        locationInput.addEventListener("change", function () {
-            const inputValue = this.value.trim();
-            // Simulate looking up the city based on the entered ZIP code.
-            if (/^\d{5}$/.test(inputValue)) {
-                // You can replace this with your own ZIP code to city lookup logic.
-                const zipToCityMap = {
-                    "12345": "Sample City 1",
-                    "67890": "Sample City 2",
-                };
-
-                const city = zipToCityMap[inputValue];
-                if (city) {
-                    locationInput.value = city;
-                }
             }
         });
 
