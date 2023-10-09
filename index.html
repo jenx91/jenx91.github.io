@@ -40,7 +40,6 @@
         }
 
         input, select {
-            width: 100%;
             padding: 10px;
             font-family: Arial, sans-serif;
             font-size: 16px;
@@ -48,9 +47,15 @@
             border-radius: 5px; /* Rounded corners for input elements */
         }
 
-        /* Reduce the height of the date input to match the time input */
-        input[type="date"] {
-            height: auto; /* Adjust the height for date input */
+        /* Set the width of the date and time input boxes to 30px */
+        input[type="date"],
+        select#time {
+            width: 30px;
+        }
+
+        /* Set the width of the service search box to 50px */
+        select#service {
+            width: 50px;
         }
 
         button {
@@ -64,7 +69,7 @@
 
         /* Styles for the top dropdown list */
         #city-state-dropdown {
-            max-width: 800px;
+            max-width: 200px; /* Reduce the width of the location dropdown */
             width: 100%;
             margin: 0;
             padding: 10px;
@@ -76,7 +81,7 @@
     </style>
 </head>
 <body>
-    <!-- City, State dropdown at the top -->
+    <!-- City, State dropdown in the left corner -->
     <select id="city-state-dropdown">
         <option value="New York, NY">New York, NY</option>
         <option value="Los Angeles, CA">Los Angeles, CA</option>
@@ -103,7 +108,7 @@
             </select>
         </div>
         <div class="form-column">
-            <!-- Updated list of auto services -->
+            <!-- Updated width of the service search box -->
             <select id="service">
                 <option value="Oil Change">Oil Change</option>
                 <option value="Tire Rotation">Tire Rotation</option>
