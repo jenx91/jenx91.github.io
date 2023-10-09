@@ -20,13 +20,16 @@
         }
 
         #form-container {
-            text-align: left;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
             width: 100%;
-            max-width: 400px; /* Limit form width */
+            max-width: 800px; /* Limit form width */
             padding: 20px;
         }
 
         #booking-form {
+            flex: 1;
             border: 1px solid #ccc;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -36,7 +39,6 @@
 
         input, select, button {
             display: block;
-            margin-bottom: 10px;
             width: 100%;
             padding: 10px;
             font-family: Arial, sans-serif;
