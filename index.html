@@ -54,6 +54,25 @@
             color: gray;
             margin-top: 5px;
         }
+        /* Added CSS for the "Get Current Location" dropdown */
+        #current-location-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: #f1f1f1;
+            z-index: 1;
+        }
+        #current-location-dropdown button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: transparent;
+            text-align: left;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -63,7 +82,7 @@
     <div id="search-box">
         <div class="input-container" id="location-suggestions">
             <div id="location-dropdown">
-                <input type="text" id="location" placeholder="Enter city or ZIP code" onfocus="showGetCurrentLocation()">
+                <input type="text" id="location" placeholder="Enter city or ZIP code" onfocus="showGetCurrentLocation()" onblur="hideGetCurrentLocation()">
                 <div id="current-location-dropdown">
                     <button id="get-current-location" onclick="getCurrentLocation()">Get Current Location</button>
                 </div>
@@ -111,6 +130,7 @@
         const serviceSuggestions = document.getElementById("service-suggestions");
         const sampleServiceList = document.getElementById("sample-service-list");
         const getCurrentLocationBtn = document.getElementById("get-current-location");
+        const currentLocationDropdown = document.getElementById("current-location-dropdown");
 
         // Set the date input to today's date by default
         const today = new Date().toISOString().split("T")[0];
@@ -136,7 +156,11 @@
         }
 
         function showGetCurrentLocation() {
-            getCurrentLocationBtn.style.display = "block";
+            currentLocationDropdown.style.display = "block";
+        }
+
+        function hideGetCurrentLocation() {
+            currentLocationDropdown.style.display = "none";
         }
 
         locationInput.addEventListener("input", function () {
@@ -156,7 +180,6 @@
             );
 
             // Display matching suggestions in a dropdown within the location input.
-            const locationSuggestions = document.getElementById("location-suggestions");
             if (filteredSuggestions.length > 0) {
                 citySuggestions.style.display = "block";
                 citySuggestions.innerHTML = "";
