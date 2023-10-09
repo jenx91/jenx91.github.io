@@ -24,13 +24,19 @@
             padding: 10px;
             cursor: pointer;
         }
+        #location-suggestions {
+            position: relative;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
     <h1>Find Auto Repair Shops</h1>
     <div id="search-box">
-        <input type="text" id="location" placeholder="Enter city or ZIP code">
-        <div id="city-suggestions"></div>
+        <div id="location-suggestions">
+            <input type="text" id="location" placeholder="Enter city or ZIP code">
+            <div id="city-suggestions"></div>
+        </div>
         <input type="date" id="date">
         <select id="time">
             <!-- Default time options updated to nearest 30-minute increments -->
@@ -84,7 +90,8 @@
                 suggestion.toLowerCase().includes(inputValue.toLowerCase())
             );
 
-            // Display matching suggestions in a dropdown.
+            // Display matching suggestions in a dropdown within the location input.
+            const locationSuggestions = document.getElementById("location-suggestions");
             if (filteredSuggestions.length > 0) {
                 citySuggestions.style.display = "block";
                 citySuggestions.innerHTML = "";
