@@ -5,7 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Easy Auto Services Booking</title>
     <style>
-        /* Add your CSS styling here */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        header {
+            text-align: center;
+        }
+
+        #booking-form {
+            text-align: left;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+        }
+
+        input, select, button {
+            display: block;
+            margin-bottom: 10px;
+            width: 100%;
+            padding: 10px;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Add your other CSS styles here */
+
     </style>
 </head>
 <body>
@@ -14,7 +55,6 @@
         <p>Book your next auto services today</p>
     </header>
     <form id="booking-form">
-        <label for="location">Location:</label>
         <input type="text" id="location" placeholder="City, State" autocomplete="off" list="location-list">
         <datalist id="location-list">
             <option value="New York, NY">
@@ -24,10 +64,8 @@
             <!-- Add more sample locations here -->
         </datalist>
 
-        <label for="date">Date:</label>
         <input type="date" id="date">
 
-        <label for="time">Time:</label>
         <select id="time">
             <option value="7:00 AM">7:00 AM</option>
             <option value="7:30 AM">7:30 AM</option>
@@ -36,7 +74,6 @@
             <option value="6:00 PM">6:00 PM</option>
         </select>
 
-        <label for="service">Service search in your area:</label>
         <input type="text" id="service" placeholder="Search for services" autocomplete="off" list="service-list">
         <datalist id="service-list">
             <option value="Oil Change">
@@ -49,9 +86,47 @@
         <button type="submit">Book Now</button>
     </form>
 
-    <!-- Add your JavaScript code here -->
     <script>
-        // You can add JavaScript for autocomplete suggestions and form submission here
+        // JavaScript for filtering options as the user types
+        const locationInput = document.getElementById("location");
+        const serviceInput = document.getElementById("service");
+        const locationList = document.getElementById("location-list");
+        const serviceList = document.getElementById("service-list");
+
+        locationInput.addEventListener("input", filterLocationOptions);
+        serviceInput.addEventListener("input", filterServiceOptions);
+
+        function filterLocationOptions() {
+            const inputText = locationInput.value.toLowerCase();
+            const options = locationList.getElementsByTagName("option");
+
+            for (let i = 0; i < options.length; i++) {
+                const option = options[i];
+                const optionText = option.value.toLowerCase();
+
+                if (optionText.startsWith(inputText)) {
+                    option.style.display = "block";
+                } else {
+                    option.style.display = "none";
+                }
+            }
+        }
+
+        function filterServiceOptions() {
+            const inputText = serviceInput.value.toLowerCase();
+            const options = serviceList.getElementsByTagName("option");
+
+            for (let i = 0; i < options.length; i++) {
+                const option = options[i];
+                const optionText = option.value.toLowerCase();
+
+                if (optionText.startsWith(inputText)) {
+                    option.style.display = "block";
+                } else {
+                    option.style.display = "none";
+                }
+            }
+        }
     </script>
 </body>
 </html>
