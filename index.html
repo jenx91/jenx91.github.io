@@ -86,7 +86,7 @@
                 <input type="text" id="location" placeholder="Enter city or ZIP code" onfocus="showGetCurrentLocation()" onblur="hideGetCurrentLocation()">
                 <div id="current-location-dropdown">
                     <!-- Display the "Get Current Location" button here -->
-                    <button id="get-current-location">Get Current Location</button>
+                    <button id="get-current-location" onclick="getCurrentLocation()">Get Current Location</button>
                 </div>
                 <div id="city-suggestions"></div>
             </div>
@@ -131,7 +131,6 @@
         const citySuggestions = document.getElementById("city-suggestions");
         const serviceSuggestions = document.getElementById("service-suggestions");
         const sampleServiceList = document.getElementById("sample-service-list");
-        const getCurrentLocationBtn = document.getElementById("get-current-location");
         const currentLocationDropdown = document.getElementById("current-location-dropdown");
 
         // Set the date input to today's date by default
