@@ -36,15 +36,14 @@
             font-family: Arial, sans-serif;
             font-size: 16px;
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
+            flex-wrap: wrap; /* Allow columns to wrap on smaller screens */
+            gap: 10px; /* Add some space between columns */
+            padding: 10px;
         }
 
-        #booking-form > div {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 10px;
+        .form-column {
+            flex: 1; /* Each column occupies equal space */
         }
 
         input, select, button {
@@ -73,7 +72,7 @@
     </header>
     <div id="form-container">
         <form id="booking-form">
-            <div>
+            <div class="form-column">
                 <input type="text" id="location" placeholder="City, State" autocomplete="off" list="location-list">
                 <datalist id="location-list">
                     <option value="New York, NY">
@@ -83,8 +82,10 @@
                     <!-- Add more sample locations here -->
                 </datalist>
             </div>
-            <div>
+            <div class="form-column">
                 <input type="date" id="date">
+            </div>
+            <div class="form-column">
                 <select id="time">
                     <option value="7:00 AM">7:00 AM</option>
                     <option value="7:30 AM">7:30 AM</option>
@@ -93,7 +94,7 @@
                     <option value="6:00 PM">6:00 PM</option>
                 </select>
             </div>
-            <div>
+            <div class="form-column">
                 <input type="text" id="service" placeholder="Search for services" autocomplete="off" list="service-list">
                 <datalist id="service-list">
                     <option value="Oil Change">
