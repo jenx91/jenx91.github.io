@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Auto Repair and Body Shop Booking</title>
+    <title>Auto Repair Shop Booking</title>
     <style>
         /* CSS for basic styling (you can expand on this) */
         body {
@@ -11,6 +11,16 @@
         #search-box {
             margin: 20px;
         }
+        #city-suggestions {
+            display: none;
+            position: absolute;
+            z-index: 1;
+            background-color: #f1f1f1;
+        }
+        .suggestion-item {
+            padding: 10px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -18,6 +28,7 @@
     <div id="search-box">
         <label for="location">Enter Your Location:</label>
         <input type="text" id="location" placeholder="Enter city or ZIP code">
+        <div id="city-suggestions"></div>
         <label for="date">Select Date:</label>
         <input type="date" id="date">
         <button onclick="searchRepairShops()">Search</button>
@@ -27,14 +38,49 @@
     </div>
 
     <script>
+        const locationInput = document.getElementById("location");
+        const citySuggestions = document.getElementById("city-suggestions");
+
+        locationInput.addEventListener("input", function () {
+            const inputValue = this.value.trim();
+            if (inputValue.length === 0) {
+                citySuggestions.style.display = "none";
+                return;
+            }
+
+            // You can replace this with your own API endpoint for city suggestions.
+            // Here, we're simulating suggestions with a simple array.
+            const suggestions = ["New York", "Los Angeles", "Chicago", "Houston", "San Francisco"];
+
+            // Filter suggestions based on the user's input.
+            const filteredSuggestions = suggestions.filter(suggestion =>
+                suggestion.toLowerCase().includes(inputValue.toLowerCase())
+            );
+
+            // Display matching suggestions in a dropdown.
+            if (filteredSuggestions.length > 0) {
+                citySuggestions.style.display = "block";
+                citySuggestions.innerHTML = "";
+                filteredSuggestions.forEach(suggestion => {
+                    const suggestionItem = document.createElement("div");
+                    suggestionItem.className = "suggestion-item";
+                    suggestionItem.textContent = suggestion;
+                    suggestionItem.addEventListener("click", function () {
+                        locationInput.value = suggestion;
+                        citySuggestions.style.display = "none";
+                    });
+                    citySuggestions.appendChild(suggestionItem);
+                });
+            } else {
+                citySuggestions.style.display = "none";
+            }
+        });
+
         function searchRepairShops() {
-            const location = document.getElementById("location").value;
+            const location = locationInput.value;
             const selectedDate = document.getElementById("date").value;
-            // You would typically make an AJAX request to your backend here
-            // to fetch and display repair shop bookings based on the location and date.
-            // For simplicity, we'll just display a message here.
-            const resultsDiv = document.getElementById("results");
-            resultsDiv.innerHTML = `<p>Showing results for auto repair shop bookings in ${location} on ${selectedDate}.</p>`;
+            // Continue with the search functionality as before.
+            // ...
         }
     </script>
 </body>
