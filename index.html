@@ -13,9 +13,6 @@
         #header {
             background-color: #fff;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            top: 0;
-            left: 0;
             width: 100%;
             padding: 10px;
         }
@@ -68,10 +65,10 @@
         <div class="input-container" id="location-suggestions">
             <div id="location-dropdown">
                 <input type="text" id="location" placeholder="Enter city or ZIP code" onfocus="showGetCurrentLocation()">
+                <div id="current-location-dropdown">
+                    <button id="get-current-location" onclick="getCurrentLocation()">Get Current Location</button>
+                </div>
                 <div id="city-suggestions"></div>
-            </div>
-            <div id="current-location-dropdown">
-                <button id="get-current-location" onclick="getCurrentLocation()">Get Current Location</button>
             </div>
         </div>
         <div class="input-container">
