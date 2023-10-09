@@ -12,9 +12,9 @@
             margin: 20px;
             position: relative; /* Position the search box relative to its container */
         }
-        #city-suggestions {
+        #city-suggestions, #service-suggestions {
             display: none;
-            position: absolute; /* Position the suggestion box absolutely */
+            position: absolute; /* Position the suggestion boxes absolutely */
             top: 100%; /* Display below the search box */
             left: 0;
             width: 100%; /* Match the width of the search box */
@@ -42,6 +42,8 @@
             <option value="11:30">11:30 AM</option>
             <!-- Add more options as needed -->
         </select>
+        <input type="text" id="service" placeholder="Enter auto repair service">
+        <div id="service-suggestions"></div>
         <button onclick="searchRepairShops()">Search</button>
     </div>
     <div id="results">
@@ -52,7 +54,9 @@
         const locationInput = document.getElementById("location");
         const dateInput = document.getElementById("date");
         const timeSelect = document.getElementById("time");
+        const serviceInput = document.getElementById("service");
         const citySuggestions = document.getElementById("city-suggestions");
+        const serviceSuggestions = document.getElementById("service-suggestions");
 
         // Set the date input to today's date by default
         const today = new Date().toISOString().split("T")[0];
@@ -99,11 +103,46 @@
             }
         });
 
+        serviceInput.addEventListener("input", function () {
+            const inputValue = this.value.trim();
+            if (inputValue.length === 0) {
+                serviceSuggestions.style.display = "none";
+                return;
+            }
+
+            // Simulate auto-suggestions for auto repair services.
+            const serviceSuggestionsArray = ["Oil Change", "Brake Repair", "Tire Replacement", "Engine Diagnostics", "Transmission Repair"];
+
+            // Filter suggestions based on the user's input.
+            const filteredServiceSuggestions = serviceSuggestionsArray.filter(suggestion =>
+                suggestion.toLowerCase().includes(inputValue.toLowerCase())
+            );
+
+            // Display matching service suggestions in a dropdown.
+            if (filteredServiceSuggestions.length > 0) {
+                serviceSuggestions.style.display = "block";
+                serviceSuggestions.innerHTML = "";
+                filteredServiceSuggestions.forEach(suggestion => {
+                    const suggestionItem = document.createElement("div");
+                    suggestionItem.className = "suggestion-item";
+                    suggestionItem.textContent = suggestion;
+                    suggestionItem.addEventListener("click", function () {
+                        serviceInput.value = suggestion;
+                        serviceSuggestions.style.display = "none";
+                    });
+                    serviceSuggestions.appendChild(suggestionItem);
+                });
+            } else {
+                serviceSuggestions.style.display = "none";
+            }
+        });
+
         function searchRepairShops() {
             const location = locationInput.value;
             const selectedDate = dateInput.value;
             const selectedTime = timeSelect.value;
-            // Continue with the search functionality as before, including date and time.
+            const selectedService = serviceInput.value;
+            // Continue with the search functionality as before, including date, time, and service.
             // ...
         }
     </script>
