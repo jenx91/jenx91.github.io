@@ -37,6 +37,12 @@
         #service:hover + #service-suggestions {
             display: block; /* Show suggestions when service input is hovered */
         }
+        #sample-service-list {
+            display: none;
+            font-size: 14px;
+            color: gray;
+            margin-top: 5px;
+        }
     </style>
 </head>
 <body>
@@ -55,15 +61,22 @@
                 <option value="08:00">08:00 AM</option>
                 <option value="08:30">08:30 AM</option>
                 <option value="09:00">09:00 AM</option>
-                <option value="09:30">09:30 AM</option>
                 <!-- ... (other time options) ... -->
                 <option value="17:00">05:00 PM</option>
                 <option value="17:30">05:30 PM</option>
             </select>
         </div>
         <div class="input-container">
-            <input type="text" id="service" placeholder="Popular searches in your area today (e.g., Oil Change, Brake Repair)" autocomplete="off">
+            <input type="text" id="service" placeholder="Popular searches in your area today (e.g., Oil Change, Brake Repair)" autocomplete="off" onclick="showSampleServiceList()">
             <div id="service-suggestions"></div>
+            <div id="sample-service-list">
+                Sample Popular Services:<br>
+                - Oil Change<br>
+                - Brake Repair<br>
+                - Tire Replacement<br>
+                - Engine Diagnostics<br>
+                - Transmission Repair
+            </div>
         </div>
         <button onclick="searchRepairShops()">Search</button>
     </div>
@@ -78,6 +91,7 @@
         const serviceInput = document.getElementById("service");
         const citySuggestions = document.getElementById("city-suggestions");
         const serviceSuggestions = document.getElementById("service-suggestions");
+        const sampleServiceList = document.getElementById("sample-service-list");
 
         // Set the date input to today's date by default
         const today = new Date().toISOString().split("T")[0];
@@ -141,6 +155,10 @@
                 }
             }
         });
+
+        function showSampleServiceList() {
+            sampleServiceList.style.display = "block";
+        }
 
         serviceInput.addEventListener("input", function () {
             const inputValue = this.value.trim();
