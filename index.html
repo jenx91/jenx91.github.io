@@ -25,37 +25,44 @@
             justify-content: space-between; /* Distribute columns evenly */
             max-width: 800px; /* Limit form width */
             padding: 20px;
-            border: 1px solid #ccc;
             border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             font-family: Arial, sans-serif;
             font-size: 16px;
+        }
+
+        .form-row {
+            display: flex;
+            align-items: flex-start; /* Align items to the top of the row */
+            flex-wrap: wrap; /* Allow items to wrap when needed */
+            width: 100%; /* Ensure the row takes the full width */
+            margin-bottom: 10px; /* Add margin to separate rows */
         }
 
         .form-column {
             flex: 1; /* Each column occupies equal space */
             box-sizing: border-box; /* Include borders within the width */
             padding: 10px; /* Add padding to separate content from borders */
-            margin-bottom: 10px; /* Add margin to the bottom of each column */
         }
 
         input, select {
+            width: 100%;
             padding: 10px;
             font-family: Arial, sans-serif;
             font-size: 16px;
             border: 1px solid #ccc; /* Add a border to input elements */
             border-radius: 5px; /* Rounded corners for input elements */
+            box-shadow: none; /* Remove the shadow border */
         }
 
-        /* Set the width of the date and time input boxes to 30px */
+        /* Set the width of the date and time input boxes to 80px */
         input[type="date"],
         select#time {
-            width: 30px;
+            width: 80px;
         }
 
-        /* Set the width of the service search box to 50px */
+        /* Set the width of the service search box to 200px */
         select#service {
-            width: 50px;
+            width: 200px;
         }
 
         button {
@@ -95,27 +102,32 @@
         <p>Book your next auto services today</p>
     </header>
     <form id="booking-form">
-        <div class="form-column">
-            <input type="date" id="date" value="<?php echo date('Y-m-d'); ?>">
-        </div>
-        <div class="form-column">
-            <select id="time">
-                <option value="7:00 AM">7:00 AM</option>
-                <option value="7:30 AM">7:30 AM</option>
-                <option value="8:00 AM">8:00 AM</option>
-                <!-- Add more time slots here -->
-                <option value="6:00 PM">6:00 PM</option>
-            </select>
-        </div>
-        <div class="form-column">
-            <!-- Updated width of the service search box -->
-            <select id="service">
-                <option value="Oil Change">Oil Change</option>
-                <option value="Tire Rotation">Tire Rotation</option>
-                <option value="Brake Inspection">Brake Inspection</option>
-                <!-- Add more sample services here -->
-            </select>
-            <button type="submit">Book Now</button>
+        <!-- Form row containing date, time, service, and "Book Now" -->
+        <div class="form-row">
+            <div class="form-column">
+                <input type="date" id="date" value="<?php echo date('Y-m-d'); ?>">
+            </div>
+            <div class="form-column">
+                <select id="time">
+                    <option value="7:00 AM">7:00 AM</option>
+                    <option value="7:30 AM">7:30 AM</option>
+                    <option value="8:00 AM">8:00 AM</option>
+                    <!-- Add more time slots here -->
+                    <option value="6:00 PM">6:00 PM</option>
+                </select>
+            </div>
+            <div class="form-column">
+                <!-- Updated width of the service search box -->
+                <select id="service">
+                    <option value="Oil Change">Oil Change</option>
+                    <option value="Tire Rotation">Tire Rotation</option>
+                    <option value="Brake Inspection">Brake Inspection</option>
+                    <!-- Add more sample services here -->
+                </select>
+            </div>
+            <div class="form-column">
+                <button type="submit">Book Now</button>
+            </div>
         </div>
     </form>
 </body>
