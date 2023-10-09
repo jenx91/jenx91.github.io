@@ -1,95 +1,127 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Easy Auto Services Booking</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
-
-        #header {
-            background-color: #fff;
-            padding: 10px;
-        }
-
-        #header h1 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
             margin: 0;
         }
 
-        #search-box {
-            margin: 20px auto;
+        header {
             text-align: center;
-            width: 70%;
-            background-color: #fff;
-            padding: 10px;
+            margin: 20px 0;
         }
 
-        .input-container {
-            display: inline-block;
-            margin-right: 10px;
+        #booking-form {
+            display: flex;
+            flex-wrap: wrap; /* Allow columns to wrap on smaller screens */
+            justify-content: space-between; /* Distribute columns evenly */
+            max-width: 800px; /* Limit form width */
+            padding: 20px;
+            border-radius: 5px;
+            font-family: Arial, sans-serif;
+            font-size: 16px; /* Set a common font size for all form elements */
         }
 
-        .search-box-input {
+        .form-row {
+            display: flex;
+            align-items: flex-start; /* Align items to the top of the row */
+            flex-wrap: wrap; /* Allow items to wrap when needed */
+            width: 100%; /* Ensure the row takes the full width */
+            margin-bottom: 10px; /* Add margin to separate rows */
+            justify-content: space-between; /* Distribute items evenly */
+        }
+
+        .form-column {
+            flex: 1; /* Each column occupies equal space */
+            box-sizing: border-box; /* Include borders within the width */
+            padding: 10px; /* Add padding to separate content from borders */
+            display: flex; /* Enable flexbox layout */
+            align-items: center; /* Center items vertically in the column */
+        }
+
+        input, select {
             width: 100%;
             padding: 10px;
             font-family: Arial, sans-serif;
-            font-size: 14px;
-            height: 40px;
+            border: 1px solid #ccc; /* Add a border to input elements */
+            border-radius: 5px; /* Rounded corners for input elements */
+            box-shadow: none; /* Remove the shadow border */
+            font-size: inherit; /* Inherit the common font size */
         }
 
-        #city-suggestions,
-        #service-suggestions {
-            display: none;
-            position: absolute;
-            width: 100%;
-            background-color: #f1f1f1;
-            z-index: 1;
-        }
-
-        .suggestion-item {
-            padding: 10px;
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
+            padding: 10px 20px; /* Add padding to the button */
+            font-size: inherit; /* Inherit the common font size */
         }
 
-        #service-suggestions {
-            position: relative;
+        /* Styles for the top dropdown list */
+        #city-state-dropdown {
+            max-width: 200px; /* Reduce the width of the location dropdown */
+            width: 100%;
+            margin: 0;
+            padding: 10px;
+            font-family: Arial, sans-serif;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: inherit; /* Inherit the common font size */
         }
     </style>
 </head>
 <body>
-    <div id="header">
-        <h1>Book your next auto services today</h1>
-    </div>
-    <div id="search-box">
-        <div class="input-container" id="location-suggestions">
-            <input type="text" id="location" class="search-box-input" placeholder="Enter city or ZIP code">
-            <div id="city-suggestions"></div>
-        </div>
-        <div class="input-container">
-            <input type="date" id="date" class="search-box-input">
-        </div>
-        <div class="input-container">
-            <select id="time" class="search-box-input">
-                <option value="07:00">07:00 AM</option>
-                <option value="07:30">07:30 AM</option>
-                <!-- Add more time options here -->
-            </select>
-        </div>
-        <div class="input-container" id="service-container">
-            <input type="text" id="service" class="search-box-input" placeholder="Popular searches in your area today (e.g., Oil Change, Brake Repair)" autocomplete="off">
-            <div id="service-suggestions"></div>
-        </div>
-        <button onclick="searchRepairShops()">Search</button>
-    </div>
-    <div id="results">
-        <!-- Search results will be displayed here -->
-    </div>
+    <!-- City, State dropdown in the left corner -->
+    <select id="city-state-dropdown">
+        <option value="New York, NY">New York, NY</option>
+        <option value="Los Angeles, CA">Los Angeles, CA</option>
+        <option value="Chicago, IL">Chicago, IL</option>
+        <option value="Houston, TX">Houston, TX</option>
+        <!-- Add more options here -->
+    </select>
 
-    <script>
-        // JavaScript code remains the same as previous versions.
-    </script>
+    <header>
+        <h1>Easy Auto Services Booking</h1>
+        <p>Book your next auto services today</p>
+    </header>
+    <form id="booking-form">
+        <!-- Form row containing date, time, service, and "Book Now" -->
+        <div class="form-row">
+            <div class="form-column">
+                <input type="date" id="date" value="<?php echo date('Y-m-d'); ?>">
+            </div>
+            <div class="form-column">
+                <select id="time">
+                    <option value="7:00 AM">7:00 AM</option>
+                    <option value="7:30 AM">7:30 AM</option>
+                    <option value="8:00 AM">8:00 AM</option>
+                    <!-- Add more time slots here -->
+                    <option value="6:00 PM">6:00 PM</option>
+                </select>
+            </div>
+            <div class="form-column">
+                <!-- Updated width of the service search box -->
+                <select id="service">
+                    <option value="Oil Change">Oil Change</option>
+                    <option value="Tire Rotation">Tire Rotation</option>
+                    <option value="Brake Inspection">Brake Inspection</option>
+                    <!-- Add more sample services here -->
+                </select>
+            </div>
+            <div class="form-column">
+                <button type="submit">Book Now</button>
+            </div>
+        </div>
+    </form>
 </body>
 </html>
