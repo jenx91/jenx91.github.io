@@ -22,7 +22,7 @@
         #booking-form {
             display: flex;
             flex-wrap: wrap; /* Allow columns to wrap on smaller screens */
-            gap: 10px; /* Add some space between columns */
+            justify-content: space-between; /* Distribute columns evenly */
             max-width: 800px; /* Limit form width */
             padding: 20px;
             border: 1px solid #ccc;
@@ -36,7 +36,6 @@
             flex: 1; /* Each column occupies equal space */
             box-sizing: border-box; /* Include borders within the width */
             padding: 10px; /* Add padding to separate content from borders */
-            margin: 5px; /* Equal margin on all sides to ensure uniform spacing */
         }
 
         input, select, button {
@@ -45,6 +44,7 @@
             font-family: Arial, sans-serif;
             font-size: 16px;
             height: 40px; /* Set a fixed height to make all input elements the same height */
+            margin-bottom: 10px; /* Add margin to the bottom of each column */
         }
 
         /* Reduce the height of the date input to match the time input */
