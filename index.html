@@ -38,8 +38,8 @@
             padding: 10px;
             cursor: pointer;
         }
-        #service:hover + #service-suggestions {
-            display: block; /* Show suggestions when service input is hovered */
+        #service-suggestions {
+            position: relative; /* Change position to relative to remove hover effect */
         }
         #sample-service-list {
             display: none;
@@ -52,8 +52,13 @@
 <body>
     <div id="search-box">
         <div class="input-container" id="location-suggestions">
-            <input type="text" id="location" placeholder="Enter city or ZIP code" onclick="getCurrentLocation()">
-            <div id="city-suggestions"></div>
+            <div id="location-dropdown">
+                <input type="text" id="location" placeholder="Enter city or ZIP code">
+                <div id="city-suggestions"></div>
+            </div>
+            <div id="current-location-dropdown">
+                <button onclick="getCurrentLocation()">Get Current Location</button>
+            </div>
         </div>
         <div class="input-container">
             <input type="date" id="date">
