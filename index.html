@@ -42,6 +42,8 @@
             flex: 1; /* Each column occupies equal space */
             box-sizing: border-box; /* Include borders within the width */
             padding: 10px; /* Add padding to separate content from borders */
+            display: flex; /* Enable flexbox layout */
+            align-items: center; /* Center items vertically in the column */
         }
 
         input, select {
@@ -54,15 +56,15 @@
             box-shadow: none; /* Remove the shadow border */
         }
 
-        /* Set the width of the date and time input boxes to 80px */
+        /* Set the width of the date and time input boxes to 120px */
         input[type="date"],
         select#time {
-            width: 80px;
+            width: 120px;
         }
 
-        /* Set the width of the service search box to 200px */
+        /* Set the width of the service search box to 250px */
         select#service {
-            width: 200px;
+            width: 250px;
         }
 
         button {
