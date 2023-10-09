@@ -85,7 +85,8 @@
             <div id="location-dropdown">
                 <input type="text" id="location" placeholder="Enter city or ZIP code" onfocus="showGetCurrentLocation()" onblur="hideGetCurrentLocation()">
                 <div id="current-location-dropdown">
-                    <button id="get-current-location" onclick="getCurrentLocation()">Get Current Location</button>
+                    <!-- Display the "Get Current Location" button here -->
+                    <button id="get-current-location">Get Current Location</button>
                 </div>
                 <div id="city-suggestions"></div>
             </div>
@@ -143,6 +144,7 @@
         const defaultTime = `${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}`;
         timeSelect.value = defaultTime;
 
+        // Function to get current location
         function getCurrentLocation() {
             if ("geolocation" in navigator) {
                 navigator.geolocation.getCurrentPosition(function (position) {
