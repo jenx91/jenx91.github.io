@@ -5,123 +5,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Easy Auto Services Booking</title>
     <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            height: 100vh;
-            margin: 0;
-        }
-
-        header {
-            text-align: center;
-            margin: 20px 0;
-        }
-
-        #booking-form {
-            display: flex;
-            flex-wrap: wrap; /* Allow columns to wrap on smaller screens */
-            justify-content: space-between; /* Distribute columns evenly */
-            max-width: 800px; /* Limit form width */
-            padding: 20px;
-            border-radius: 5px;
-            font-family: Arial, sans-serif;
-            font-size: 16px; /* Set a common font size for all form elements */
-        }
-
-        .form-row {
-            display: flex;
-            align-items: flex-start; /* Align items to the top of the row */
-            flex-wrap: wrap; /* Allow items to wrap when needed */
-            width: 100%; /* Ensure the row takes the full width */
-            margin-bottom: 10px; /* Add margin to separate rows */
-            justify-content: space-between; /* Distribute items evenly */
-        }
-
-        .form-column {
-            flex: 1; /* Each column occupies equal space */
-            box-sizing: border-box; /* Include borders within the width */
-            padding: 10px; /* Add padding to separate content from borders */
-            display: flex; /* Enable flexbox layout */
-            align-items: center; /* Center items vertically in the column */
-        }
-
-        input, select {
-            width: 100%;
-            padding: 10px;
-            font-family: Arial, sans-serif;
-            border: 1px solid #ccc; /* Add a border to input elements */
-            border-radius: 5px; /* Rounded corners for input elements */
-            box-shadow: none; /* Remove the shadow border */
-            font-size: inherit; /* Inherit the common font size */
-        }
-
-        button {
-            background-color: #007BFF;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            padding: 10px 20px; /* Add padding to the button */
-            font-size: inherit; /* Inherit the common font size */
-        }
-
-        /* Styles for the top dropdown list */
-        #city-state-dropdown {
-            max-width: 200px; /* Reduce the width of the location dropdown */
-            width: 100%;
-            margin: 0;
-            padding: 10px;
-            font-family: Arial, sans-serif;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: inherit; /* Inherit the common font size */
-        }
+        /* Add your CSS styles here */
     </style>
 </head>
 <body>
-    <!-- City, State dropdown in the left corner -->
-    <select id="city-state-dropdown">
-        <option value="New York, NY">New York, NY</option>
-        <option value="Los Angeles, CA">Los Angeles, CA</option>
-        <option value="Chicago, IL">Chicago, IL</option>
-        <option value="Houston, TX">Houston, TX</option>
-        <!-- Add more options here -->
-    </select>
-
     <header>
-        <h1>Easy Auto Services Booking</h1>
-        <p>Book your next auto services today</p>
+        <h1>Book your next auto services today</h1>
     </header>
-    <form id="booking-form">
-        <!-- Form row containing date, time, service, and "Book Now" -->
-        <div class="form-row">
-            <div class="form-column">
-                <input type="date" id="date" value="<?php echo date('Y-m-d'); ?>">
-            </div>
-            <div class="form-column">
-                <select id="time">
-                    <option value="7:00 AM">7:00 AM</option>
-                    <option value="7:30 AM">7:30 AM</option>
-                    <option value="8:00 AM">8:00 AM</option>
-                    <!-- Add more time slots here -->
-                    <option value="6:00 PM">6:00 PM</option>
-                </select>
-            </div>
-            <div class="form-column">
-                <!-- Updated width of the service search box -->
-                <select id="service">
-                    <option value="Oil Change">Oil Change</option>
-                    <option value="Tire Rotation">Tire Rotation</option>
-                    <option value="Brake Inspection">Brake Inspection</option>
-                    <!-- Add more sample services here -->
-                </select>
-            </div>
-            <div class="form-column">
-                <button type="submit">Book Now</button>
-            </div>
-        </div>
-    </form>
+    <main>
+        <section>
+            <h2>Service Details</h2>
+            <label for="service-type">Service Type:</label>
+            <input type="text" id="service-type" placeholder="Search for services..." onkeyup="filterServices()">
+            
+            <label for="date">Date:</label>
+            <input type="date" id="date" value="<?php echo date('Y-m-d'); ?>">
+            
+            <label for="time">Time:</label>
+            <input type="time" id="time" step="1800" value="<?php echo date('H:i', ceil(time() / 1800) * 1800); ?>">
+        </section>
+        
+        <section>
+            <h2>Available Services</h2>
+            <ul id="service-list">
+                <!-- Services will be dynamically populated here -->
+            </ul>
+        </section>
+    </main>
+    
+    <script>
+        // Sample list of auto services (you can replace this with your data)
+        const services = [
+            "Oil Change",
+            "Tire Rotation",
+            "Brake Inspection",
+            "Car Wash",
+            "Engine Tune-Up",
+            "Wheel Alignment",
+        ];
+
+        function filterServices() {
+            const searchTerm = document.getElementById("service-type").value.toLowerCase();
+            const serviceList = document.getElementById("service-list");
+
+            // Clear existing list
+            serviceList.innerHTML = "";
+
+            // Filter and display matching services
+            services.forEach((service) => {
+                if (service.toLowerCase().includes(searchTerm)) {
+                    const listItem = document.createElement("li");
+                    listItem.textContent = service;
+                    listItem.addEventListener("click", () => bookService(service));
+                    serviceList.appendChild(listItem);
+                }
+            });
+        }
+
+        function bookService(service) {
+            // You can implement the booking logic here
+            alert(`Booking ${service} on ${document.getElementById("date").value} at ${document.getElementById("time").value}`);
+        }
+
+        // Initialize the service list
+        filterServices();
+    </script>
 </body>
 </html>
