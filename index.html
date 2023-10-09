@@ -36,22 +36,21 @@
             flex: 1; /* Each column occupies equal space */
             box-sizing: border-box; /* Include borders within the width */
             padding: 10px; /* Add padding to separate content from borders */
+            margin-bottom: 10px; /* Add margin to the bottom of each column */
         }
 
-        input, select, button {
+        input, select {
             width: 100%;
             padding: 10px;
             font-family: Arial, sans-serif;
             font-size: 16px;
-            height: 20px; /* Set a fixed height of 20px for all input elements */
-            margin-bottom: 10px; /* Add margin to the bottom of each column */
             border: 1px solid #ccc; /* Add a border to input elements */
             border-radius: 5px; /* Rounded corners for input elements */
         }
 
         /* Reduce the height of the date input to match the time input */
         input[type="date"] {
-            height: 20px; /* Adjust the height for date input */
+            height: auto; /* Adjust the height for date input */
         }
 
         button {
@@ -60,7 +59,14 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            padding: 10px 20px; /* Add padding to the button */
         }
+
+        /* Add custom styles for the "Search for services" input */
+        #service {
+            width: calc(100% - 140px); /* Adjust the width to accommodate the button */
+        }
+
     </style>
 </head>
 <body>
@@ -100,8 +106,8 @@
                 <option value="Transmission Service">
                 <!-- Add more sample services here -->
             </datalist>
+            <button type="submit">Book Now</button>
         </div>
-        <button type="submit">Book Now</button>
     </form>
 </body>
 </html>
