@@ -28,51 +28,34 @@
         .input-container {
             display: inline-block;
             margin-right: 10px;
-            position: relative; /* Add relative positioning */
+            vertical-align: top; /* Align search boxes to the top */
         }
         .input-container select {
             width: auto; /* Adjust the width of the time select box */
         }
+        .search-box-input {
+            width: 100%; /* Make all search box inputs 100% width */
+            padding: 10px; /* Add padding for better appearance */
+        }
         #city-suggestions, #service-suggestions {
             display: none;
-            position: absolute; /* Position the suggestion boxes absolutely */
-            top: 100%; /* Display below the search box */
-            left: 0;
-            width: 100%; /* Match the width of the search box */
+            position: absolute;
+            width: 100%;
             background-color: #f1f1f1;
-            z-index: 1; /* Ensure suggestions are on top of other elements */
+            z-index: 1;
         }
         .suggestion-item {
             padding: 10px;
             cursor: pointer;
         }
         #service-suggestions {
-            position: relative; /* Change position to relative to remove hover effect */
+            position: relative;
         }
         #sample-service-list {
             display: none;
             font-size: 14px;
             color: gray;
             margin-top: 5px;
-        }
-        /* Added CSS for the "Get Current Location" dropdown */
-        #current-location-dropdown {
-            display: none;
-            position: absolute;
-            top: calc(100% + 10px); /* Adjust the top position */
-            left: 0;
-            width: 100%;
-            background-color: #f1f1f1;
-            z-index: 1;
-        }
-        #current-location-dropdown button {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            border: none;
-            background-color: transparent;
-            text-align: left;
-            cursor: pointer;
         }
     </style>
 </head>
@@ -82,40 +65,53 @@
     </div>
     <div id="search-box">
         <div class="input-container" id="location-suggestions">
-            <div id="location-dropdown">
-                <input type="text" id="location" placeholder="Enter city or ZIP code" onfocus="showGetCurrentLocation()" onblur="hideGetCurrentLocation()">
-                <div id="current-location-dropdown">
-                    <!-- Display the "Get Current Location" button here -->
-                    <button id="get-current-location" onclick="getCurrentLocation()">Get Current Location</button>
-                </div>
-                <div id="city-suggestions"></div>
-            </div>
+            <input type="text" id="location" class="search-box-input" placeholder="Enter city or ZIP code">
+            <div id="city-suggestions"></div>
         </div>
         <div class="input-container">
-            <input type="date" id="date">
+            <input type="date" id="date" class="search-box-input">
         </div>
         <div class="input-container">
-            <select id="time">
-                <!-- Expanded time options from 8 AM to 6 PM -->
+            <select id="time" class="search-box-input">
+                <!-- Updated time options from 7 AM to 7 PM -->
+                <option value="07:00">07:00 AM</option>
+                <option value="07:30">07:30 AM</option>
                 <option value="08:00">08:00 AM</option>
                 <option value="08:30">08:30 AM</option>
                 <option value="09:00">09:00 AM</option>
-                <!-- ... (other time options) ... -->
+                <option value="09:30">09:30 AM</option>
+                <option value="10:00">10:00 AM</option>
+                <option value="10:30">10:30 AM</option>
+                <option value="11:00">11:00 AM</option>
+                <option value="11:30">11:30 AM</option>
+                <option value="12:00">12:00 PM</option>
+                <option value="12:30">12:30 PM</option>
+                <option value="13:00">01:00 PM</option>
+                <option value="13:30">01:30 PM</option>
+                <option value="14:00">02:00 PM</option>
+                <option value="14:30">02:30 PM</option>
+                <option value="15:00">03:00 PM</option>
+                <option value="15:30">03:30 PM</option>
+                <option value="16:00">04:00 PM</option>
+                <option value="16:30">04:30 PM</option>
                 <option value="17:00">05:00 PM</option>
                 <option value="17:30">05:30 PM</option>
+                <option value="18:00">06:00 PM</option>
+                <option value="18:30">06:30 PM</option>
+                <option value="19:00">07:00 PM</option>
             </select>
         </div>
-        <div class="input-container">
-            <input type="text" id="service" placeholder="Popular searches in your area today (e.g., Oil Change, Brake Repair)" autocomplete="off" onfocus="showSampleServiceList()" onblur="hideSampleServiceList()">
+        <div class="input-container" id="service-container">
+            <input type="text" id="service" class="search-box-input" placeholder="Popular searches in your area today (e.g., Oil Change, Brake Repair)" autocomplete="off">
             <div id="service-suggestions"></div>
-            <div id="sample-service-list">
-                Sample Popular Services:<br>
-                - Oil Change<br>
-                - Brake Repair<br>
-                - Tire Replacement<br>
-                - Engine Diagnostics<br>
-                - Transmission Repair
-            </div>
+        </div>
+        <div id="sample-service-list">
+            Sample Popular Services:<br>
+            - Oil Change<br>
+            - Brake Repair<br>
+            - Tire Replacement<br>
+            - Engine Diagnostics<br>
+            - Transmission Repair
         </div>
         <button onclick="searchRepairShops()">Search</button>
     </div>
@@ -131,7 +127,7 @@
         const citySuggestions = document.getElementById("city-suggestions");
         const serviceSuggestions = document.getElementById("service-suggestions");
         const sampleServiceList = document.getElementById("sample-service-list");
-        const currentLocationDropdown = document.getElementById("current-location-dropdown");
+        const serviceContainer = document.getElementById("service-container");
 
         // Set the date input to today's date by default
         const today = new Date().toISOString().split("T")[0];
@@ -143,30 +139,6 @@
         const defaultTime = `${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}`;
         timeSelect.value = defaultTime;
 
-        // Function to get current location
-        function getCurrentLocation() {
-            if ("geolocation" in navigator) {
-                navigator.geolocation.getCurrentPosition(function (position) {
-                    const latitude = position.coords.latitude;
-                    const longitude = position.coords.longitude;
-
-                    // You can use a reverse geocoding service to get the city or address from the coordinates.
-                    // Here, we're just setting the input field to "Current Location" as a placeholder.
-                    locationInput.value = "Current Location";
-                });
-            }
-            // Hide the current location dropdown after clicking.
-            hideGetCurrentLocation();
-        }
-
-        function showGetCurrentLocation() {
-            currentLocationDropdown.style.display = "block";
-        }
-
-        function hideGetCurrentLocation() {
-            currentLocationDropdown.style.display = "none";
-        }
-
         locationInput.addEventListener("input", function () {
             const inputValue = this.value.trim();
             if (inputValue.length === 0) {
@@ -176,7 +148,13 @@
 
             // You can replace this with your own API endpoint for city suggestions.
             // Here, we're simulating suggestions with a simple array.
-            const suggestions = ["New York", "Los Angeles", "Chicago", "Houston", "San Francisco"];
+            const suggestions = [
+                "New York, NY",
+                "Los Angeles, CA",
+                "Chicago, IL",
+                "Houston, TX",
+                "San Francisco, CA"
+            ];
 
             // Filter suggestions based on the user's input.
             const filteredSuggestions = suggestions.filter(suggestion =>
@@ -209,6 +187,10 @@
         function hideSampleServiceList() {
             sampleServiceList.style.display = "none";
         }
+
+        serviceInput.addEventListener("click", function () {
+            showSampleServiceList();
+        });
 
         serviceInput.addEventListener("input", function () {
             const inputValue = this.value.trim();
@@ -252,6 +234,13 @@
             // Continue with the search functionality as before, including date, time, and service.
             // ...
         }
+
+        // Close service suggestions when clicking outside the service container.
+        document.addEventListener("click", function (event) {
+            if (!serviceContainer.contains(event.target)) {
+                serviceSuggestions.style.display = "none";
+            }
+        });
     </script>
 </body>
 </html>
