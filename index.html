@@ -110,6 +110,23 @@
             }
         });
 
+        locationInput.addEventListener("change", function () {
+            const inputValue = this.value.trim();
+            // Simulate looking up the city based on the entered ZIP code.
+            if (/^\d{5}$/.test(inputValue)) {
+                // You can replace this with your own ZIP code to city lookup logic.
+                const zipToCityMap = {
+                    "12345": "Sample City 1",
+                    "67890": "Sample City 2",
+                };
+
+                const city = zipToCityMap[inputValue];
+                if (city) {
+                    locationInput.value = city;
+                }
+            }
+        });
+
         serviceInput.addEventListener("input", function () {
             const inputValue = this.value.trim();
             if (inputValue.length === 0) {
