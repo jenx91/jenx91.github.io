@@ -28,10 +28,14 @@
             left: 0;
             width: 100%; /* Match the width of the search box */
             background-color: #f1f1f1;
+            z-index: 1; /* Ensure suggestions are on top of other elements */
         }
         .suggestion-item {
             padding: 10px;
             cursor: pointer;
+        }
+        #service:hover + #service-suggestions {
+            display: block; /* Show suggestions when service input is hovered */
         }
     </style>
 </head>
@@ -70,8 +74,10 @@
                 <option value="17:30">05:30 PM</option>
             </select>
         </div>
-        <div class="input-container" id="service-suggestions">
-            <input type="text" id="service" placeholder="Enter auto repair service">
+        <div class="input-container">
+            <!-- Add the "autocomplete" attribute to disable browser autocomplete -->
+            <input type="text" id="service" placeholder="Enter auto repair service" autocomplete="off">
+            <div id="service-suggestions"></div>
         </div>
         <button onclick="searchRepairShops()">Search</button>
     </div>
