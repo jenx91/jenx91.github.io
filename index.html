@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Auto Repair Shop Booking</title>
+    <title>Easy Auto Services Booking</title>
     <style>
         /* CSS for basic styling (you can expand on this) */
         body {
@@ -10,11 +10,22 @@
             margin: 0;
             padding: 0;
         }
+        #header {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 10px;
+        }
+        #header h1 {
+            margin: 0;
+        }
         #search-box {
-            margin: 20px;
+            margin: 20px auto;
             text-align: center;
             width: 70%; /* Set the width of the search row */
-            margin: 0 auto; /* Center the search row horizontally */
             background-color: #fff;
             padding: 10px;
         }
@@ -50,14 +61,17 @@
     </style>
 </head>
 <body>
+    <div id="header">
+        <h1>Book your next auto services today</h1>
+    </div>
     <div id="search-box">
         <div class="input-container" id="location-suggestions">
             <div id="location-dropdown">
-                <input type="text" id="location" placeholder="Enter city or ZIP code">
+                <input type="text" id="location" placeholder="Enter city or ZIP code" onfocus="showGetCurrentLocation()">
                 <div id="city-suggestions"></div>
             </div>
             <div id="current-location-dropdown">
-                <button onclick="getCurrentLocation()">Get Current Location</button>
+                <button id="get-current-location" onclick="getCurrentLocation()">Get Current Location</button>
             </div>
         </div>
         <div class="input-container">
@@ -100,6 +114,7 @@
         const citySuggestions = document.getElementById("city-suggestions");
         const serviceSuggestions = document.getElementById("service-suggestions");
         const sampleServiceList = document.getElementById("sample-service-list");
+        const getCurrentLocationBtn = document.getElementById("get-current-location");
 
         // Set the date input to today's date by default
         const today = new Date().toISOString().split("T")[0];
@@ -122,6 +137,10 @@
                     locationInput.value = "Current Location";
                 });
             }
+        }
+
+        function showGetCurrentLocation() {
+            getCurrentLocationBtn.style.display = "block";
         }
 
         locationInput.addEventListener("input", function () {
