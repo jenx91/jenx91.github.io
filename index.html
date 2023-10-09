@@ -31,6 +31,8 @@
         <div id="city-suggestions"></div>
         <label for="date">Select Date:</label>
         <input type="date" id="date">
+        <label for="time">Select Time:</label>
+        <input type="time" id="time">
         <button onclick="searchRepairShops()">Search</button>
     </div>
     <div id="results">
@@ -79,7 +81,8 @@
         function searchRepairShops() {
             const location = locationInput.value;
             const selectedDate = document.getElementById("date").value;
-            // Continue with the search functionality as before.
+            const selectedTime = document.getElementById("time").value;
+            // Continue with the search functionality as before, including date and time.
             // ...
         }
     </script>
