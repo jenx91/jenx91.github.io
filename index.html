@@ -35,10 +35,19 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             font-family: Arial, sans-serif;
             font-size: 16px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #booking-form > div {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
         }
 
         input, select, button {
-            display: block;
             width: 100%;
             padding: 10px;
             font-family: Arial, sans-serif;
@@ -64,34 +73,36 @@
     </header>
     <div id="form-container">
         <form id="booking-form">
-            <input type="text" id="location" placeholder="City, State" autocomplete="off" list="location-list">
-            <datalist id="location-list">
-                <option value="New York, NY">
-                <option value="Los Angeles, CA">
-                <option value="Chicago, IL">
-                <option value="Houston, TX">
-                <!-- Add more sample locations here -->
-            </datalist>
-
-            <input type="date" id="date">
-
-            <select id="time">
-                <option value="7:00 AM">7:00 AM</option>
-                <option value="7:30 AM">7:30 AM</option>
-                <option value="8:00 AM">8:00 AM</option>
-                <!-- Add more time slots here -->
-                <option value="6:00 PM">6:00 PM</option>
-            </select>
-
-            <input type="text" id="service" placeholder="Search for services" autocomplete="off" list="service-list">
-            <datalist id="service-list">
-                <option value="Oil Change">
-                <option value="Tire Rotation">
-                <option value="Brake Inspection">
-                <option value="Transmission Service">
-                <!-- Add more sample services here -->
-            </datalist>
-
+            <div>
+                <input type="text" id="location" placeholder="City, State" autocomplete="off" list="location-list">
+                <datalist id="location-list">
+                    <option value="New York, NY">
+                    <option value="Los Angeles, CA">
+                    <option value="Chicago, IL">
+                    <option value="Houston, TX">
+                    <!-- Add more sample locations here -->
+                </datalist>
+            </div>
+            <div>
+                <input type="date" id="date">
+                <select id="time">
+                    <option value="7:00 AM">7:00 AM</option>
+                    <option value="7:30 AM">7:30 AM</option>
+                    <option value="8:00 AM">8:00 AM</option>
+                    <!-- Add more time slots here -->
+                    <option value="6:00 PM">6:00 PM</option>
+                </select>
+            </div>
+            <div>
+                <input type="text" id="service" placeholder="Search for services" autocomplete="off" list="service-list">
+                <datalist id="service-list">
+                    <option value="Oil Change">
+                    <option value="Tire Rotation">
+                    <option value="Brake Inspection">
+                    <option value="Transmission Service">
+                    <!-- Add more sample services here -->
+                </datalist>
+            </div>
             <button type="submit">Book Now</button>
         </form>
     </div>
