@@ -62,11 +62,6 @@
             padding: 10px 20px; /* Add padding to the button */
         }
 
-        /* Add custom styles for the "Search for services" input */
-        #service {
-            width: calc(100% - 140px); /* Adjust the width to accommodate the button */
-        }
-        
         /* Styles for the top dropdown list */
         #city-state-dropdown {
             max-width: 800px;
@@ -96,7 +91,7 @@
     </header>
     <form id="booking-form">
         <div class="form-column">
-            <input type="date" id="date">
+            <input type="date" id="date" value="<?php echo date('Y-m-d'); ?>">
         </div>
         <div class="form-column">
             <select id="time">
@@ -108,14 +103,13 @@
             </select>
         </div>
         <div class="form-column">
-            <input type="text" id="service" placeholder="Search for services" autocomplete="off" list="service-list">
-            <datalist id="service-list">
-                <option value="Oil Change">
-                <option value="Tire Rotation">
-                <option value="Brake Inspection">
-                <option value="Transmission Service">
+            <!-- Updated list of auto services -->
+            <select id="service">
+                <option value="Oil Change">Oil Change</option>
+                <option value="Tire Rotation">Tire Rotation</option>
+                <option value="Brake Inspection">Brake Inspection</option>
                 <!-- Add more sample services here -->
-            </datalist>
+            </select>
             <button type="submit">Book Now</button>
         </div>
     </form>
