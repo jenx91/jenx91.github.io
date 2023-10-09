@@ -10,7 +10,11 @@
         }
         #search-box {
             margin: 20px;
-            position: relative; /* Position the search box relative to its container */
+            text-align: center;
+        }
+        .input-container {
+            display: inline-block;
+            margin-right: 10px;
         }
         #city-suggestions, #service-suggestions {
             display: none;
@@ -24,32 +28,33 @@
             padding: 10px;
             cursor: pointer;
         }
-        #location-suggestions {
-            position: relative;
-            width: 100%;
-        }
     </style>
 </head>
 <body>
     <h1>Find Auto Repair Shops</h1>
     <div id="search-box">
-        <div id="location-suggestions">
+        <div class="input-container" id="location-suggestions">
             <input type="text" id="location" placeholder="Enter city or ZIP code">
             <div id="city-suggestions"></div>
         </div>
-        <input type="date" id="date">
-        <select id="time">
-            <!-- Default time options updated to nearest 30-minute increments -->
-            <option value="09:00">09:00 AM</option>
-            <option value="09:30">09:30 AM</option>
-            <option value="10:00">10:00 AM</option>
-            <option value="10:30">10:30 AM</option>
-            <option value="11:00">11:00 AM</option>
-            <option value="11:30">11:30 AM</option>
-            <!-- Add more options as needed -->
-        </select>
-        <input type="text" id="service" placeholder="Enter auto repair service">
-        <div id="service-suggestions"></div>
+        <div class="input-container">
+            <input type="date" id="date">
+        </div>
+        <div class="input-container">
+            <select id="time">
+                <!-- Default time options updated to nearest 30-minute increments -->
+                <option value="09:00">09:00 AM</option>
+                <option value="09:30">09:30 AM</option>
+                <option value="10:00">10:00 AM</option>
+                <option value="10:30">10:30 AM</option>
+                <option value="11:00">11:00 AM</option>
+                <option value="11:30">11:30 AM</option>
+                <!-- Add more options as needed -->
+            </select>
+        </div>
+        <div class="input-container" id="service-suggestions">
+            <input type="text" id="service" placeholder="Enter auto repair service">
+        </div>
         <button onclick="searchRepairShops()">Search</button>
     </div>
     <div id="results">
@@ -91,7 +96,6 @@
             );
 
             // Display matching suggestions in a dropdown within the location input.
-            const locationSuggestions = document.getElementById("location-suggestions");
             if (filteredSuggestions.length > 0) {
                 citySuggestions.style.display = "block";
                 citySuggestions.innerHTML = "";
