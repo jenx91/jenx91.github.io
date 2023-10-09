@@ -1,3 +1,6 @@
+To add a logo at the very top of the page, you can modify the HTML and CSS as follows:
+
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +20,11 @@
         }
         #header h1 {
             margin: 0;
+        }
+        #logo {
+            display: block;
+            margin: 0 auto;
+            padding: 10px;
         }
         #search-box {
             margin: 20px auto;
@@ -55,155 +63,24 @@
 </head>
 <body>
     <div id="header">
+        <img id="logo" src="your-logo-image-url.png" alt="Logo">
         <h1>Book your next auto services today</h1>
     </div>
     <div id="search-box">
-        <div class="input-container" id="location-suggestions">
-            <input type="text" id="location" class="search-box-input" placeholder="Enter city or ZIP code">
-            <div id="city-suggestions"></div>
-        </div>
-        <div class="input-container">
-            <input type="date" id="date" class="search-box-input">
-        </div>
-        <div class="input-container">
-            <select id="time" class="search-box-input">
-                <!-- Updated time options from 7 AM to 7 PM -->
-                <option value="07:00">07:00 AM</option>
-                <option value="07:30">07:30 AM</option>
-                <!-- ... (other time options) ... -->
-                <option value="19:00">07:00 PM</option>
-            </select>
-        </div>
-        <div class="input-container" id="service-container">
-            <input type="text" id="service" class="search-box-input" placeholder="Popular searches in your area today (e.g., Oil Change, Brake Repair)" autocomplete="off">
-            <div id="service-suggestions"></div>
-        </div>
-        <button onclick="searchRepairShops()">Search</button>
+        <!-- ... (the rest of the search box content remains the same) ... -->
     </div>
     <div id="results">
         <!-- Search results will be displayed here -->
     </div>
 
     <script>
-        const locationInput = document.getElementById("location");
-        const dateInput = document.getElementById("date");
-        const timeSelect = document.getElementById("time");
-        const serviceInput = document.getElementById("service");
-        const citySuggestions = document.getElementById("city-suggestions");
-        const serviceSuggestions = document.getElementById("service-suggestions");
-        const serviceContainer = document.getElementById("service-container");
-
-        // Set the date input to today's date by default
-        const today = new Date().toISOString().split("T")[0];
-        dateInput.value = today;
-
-        // Calculate the nearest 30-minute increment for the time input by default
-        const now = new Date();
-        now.setMinutes(Math.ceil(now.getMinutes() / 30) * 30);
-        const defaultTime = `${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}`;
-        timeSelect.value = defaultTime;
-
-        locationInput.addEventListener("input", function () {
-            const inputValue = this.value.trim();
-            if (inputValue.length === 0) {
-                citySuggestions.style.display = "none";
-                return;
-            }
-
-            // You can replace this with your own API endpoint for city suggestions.
-            // Here, we're simulating suggestions with a simple array.
-            const suggestions = [
-                "New York, NY",
-                "Los Angeles, CA",
-                "Chicago, IL",
-                "Houston, TX",
-                "San Francisco, CA"
-            ];
-
-            // Filter suggestions based on the user's input.
-            const filteredSuggestions = suggestions.filter(suggestion =>
-                suggestion.toLowerCase().includes(inputValue.toLowerCase())
-            );
-
-            // Display matching suggestions in a dropdown within the location input.
-            if (filteredSuggestions.length > 0) {
-                citySuggestions.style.display = "block";
-                citySuggestions.innerHTML = "";
-                filteredSuggestions.forEach(suggestion => {
-                    const suggestionItem = document.createElement("div");
-                    suggestionItem.className = "suggestion-item";
-                    suggestionItem.textContent = suggestion;
-                    suggestionItem.addEventListener("click", function () {
-                        locationInput.value = suggestion;
-                        citySuggestions.style.display = "none";
-                    });
-                    citySuggestions.appendChild(suggestionItem);
-                });
-            } else {
-                citySuggestions.style.display = "none";
-            }
-        });
-
-        serviceInput.addEventListener("click", function () {
-            showServiceSuggestions();
-        });
-
-        serviceInput.addEventListener("input", function () {
-            const inputValue = this.value.trim();
-            if (inputValue.length === 0) {
-                serviceSuggestions.style.display = "none";
-                return;
-            }
-
-            // Simulate auto-suggestions for auto repair services.
-            const serviceSuggestionsArray = ["Oil Change", "Brake Repair", "Tire Replacement", "Engine Diagnostics", "Transmission Repair"];
-
-            // Filter suggestions based on the user's input.
-            const filteredServiceSuggestions = serviceSuggestionsArray.filter(suggestion =>
-                suggestion.toLowerCase().includes(inputValue.toLowerCase())
-            );
-
-            // Display matching service suggestions in a dropdown.
-            if (filteredServiceSuggestions.length > 0) {
-                serviceSuggestions.style.display = "block";
-                serviceSuggestions.innerHTML = "";
-                filteredServiceSuggestions.forEach(suggestion => {
-                    const suggestionItem = document.createElement("div");
-                    suggestionItem.className = "suggestion-item";
-                    suggestionItem.textContent = suggestion;
-                    suggestionItem.addEventListener("click", function () {
-                        serviceInput.value = suggestion;
-                        serviceSuggestions.style.display = "none";
-                    });
-                    serviceSuggestions.appendChild(suggestionItem);
-                });
-            } else {
-                serviceSuggestions.style.display = "none";
-            }
-        });
-
-        function searchRepairShops() {
-            const location = locationInput.value;
-            const selectedDate = dateInput.value;
-            const selectedTime = timeSelect.value;
-            const selectedService = serviceInput.value;
-            // Continue with the search functionality as before, including date, time, and service.
-            // ...
-        }
-
-        // Close service suggestions when clicking outside the service container.
-        document.addEventListener("click", function (event) {
-            if (!serviceContainer.contains(event.target)) {
-                serviceSuggestions.style.display = "none";
-            }
-        });
-
-        function showServiceSuggestions() {
-            const inputValue = serviceInput.value.trim();
-            if (inputValue.length > 0) {
-                serviceSuggestions.style.display = "block";
-            }
-        }
+        // JavaScript code remains the same
+        // ...
     </script>
 </body>
 </html>
+```
+
+Replace `"your-logo-image-url.png"` in the `src` attribute of the `img` tag with the actual URL or path to your logo image.
+
+With this code, you have added a logo at the very top of the page above the header text "Book your next auto services today."
