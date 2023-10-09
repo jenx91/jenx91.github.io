@@ -16,10 +16,11 @@
         }
         #header {
             text-align: center; /* Center text within the header */
-            margin-top: 20px; /* Add space between the top of the page and the header */
+            margin-top: 40px; /* Add more space between the top of the page and the header */
+            padding-bottom: 20px; /* Add padding at the bottom of the header */
         }
         #header h1 {
-            font-size: 36px; /* Increase the font size for the header */
+            font-size: 42px; /* Increase the font size for the header */
             margin: 0;
         }
         #search-box {
@@ -27,23 +28,22 @@
             text-align: center;
             width: 90%; /* Increase the width of the search row to use more space */
             padding: 10px;
-            display: flex; /* Use Flexbox to arrange child elements */
-            flex-wrap: wrap; /* Allow wrapping of child elements to the next row */
-            justify-content: center; /* Center the child elements horizontally */
+            display: grid; /* Use CSS Grid for layout */
+            grid-template-columns: 1fr 1fr 1fr 2fr 1fr; /* Define grid columns */
+            gap: 10px; /* Add gap between grid items */
         }
         .input-container {
-            margin-right: 10px;
-            vertical-align: top; /* Align search boxes to the top */
+            position: relative; /* Add relative positioning for absolute child elements */
         }
-        .input-container select {
-            width: auto; /* Adjust the width of the time select box */
-        }
+        .input-container select,
         .search-box-input {
             width: 100%; /* Make all search box inputs 100% width */
             padding: 10px; /* Add padding for better appearance */
+            font-family: Arial, sans-serif; /* Apply the common font-family */
+            font-size: 16px; /* Apply the common font size */
         }
-        #service-container {
-            flex: 1; /* Allow this container to grow and occupy available space */
+        .search-box-input {
+            position: relative; /* Ensure relative positioning for absolute child elements */
         }
         #service-suggestions {
             position: absolute;
@@ -61,7 +61,7 @@
 <body>
     <div id="background-container"> <!-- Background container includes header and search form -->
         <div id="header">
-            <h1>Book your auto services today</h1> <!-- Updated header with larger font size -->
+            <h1>Book your auto services today</h1> <!-- Updated header with a slightly larger font size -->
         </div>
         <div id="search-box">
             <div class="input-container" id="location-suggestions">
