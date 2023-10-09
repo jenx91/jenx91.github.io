@@ -28,6 +28,7 @@
         .input-container {
             display: inline-block;
             margin-right: 10px;
+            position: relative; /* Add relative positioning */
         }
         .input-container select {
             width: auto; /* Adjust the width of the time select box */
@@ -58,7 +59,7 @@
         #current-location-dropdown {
             display: none;
             position: absolute;
-            top: 100%;
+            top: calc(100% + 10px); /* Adjust the top position */
             left: 0;
             width: 100%;
             background-color: #f1f1f1;
