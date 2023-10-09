@@ -19,27 +19,17 @@
             margin: 20px 0;
         }
 
-        #form-container {
+        #booking-form {
             display: flex;
-            flex-direction: row;
-            align-items: flex-start;
-            width: 100%;
+            flex-wrap: wrap; /* Allow columns to wrap on smaller screens */
+            gap: 10px; /* Add some space between columns */
             max-width: 800px; /* Limit form width */
             padding: 20px;
-        }
-
-        #booking-form {
-            flex: 1;
             border: 1px solid #ccc;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             font-family: Arial, sans-serif;
             font-size: 16px;
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap; /* Allow columns to wrap on smaller screens */
-            gap: 10px; /* Add some space between columns */
-            padding: 10px;
         }
 
         .form-column {
@@ -69,9 +59,6 @@
             border-radius: 5px;
             cursor: pointer;
         }
-
-        /* Add your other CSS styles here */
-
     </style>
 </head>
 <body>
@@ -79,90 +66,40 @@
         <h1>Easy Auto Services Booking</h1>
         <p>Book your next auto services today</p>
     </header>
-    <div id="form-container">
-        <form id="booking-form">
-            <div class="form-column">
-                <input type="text" id="location" placeholder="City, State" autocomplete="off" list="location-list">
-                <datalist id="location-list">
-                    <option value="New York, NY">
-                    <option value="Los Angeles, CA">
-                    <option value="Chicago, IL">
-                    <option value="Houston, TX">
-                    <!-- Add more sample locations here -->
-                </datalist>
-            </div>
-            <div class="form-column">
-                <input type="date" id="date">
-            </div>
-            <div class="form-column">
-                <select id="time">
-                    <option value="7:00 AM">7:00 AM</option>
-                    <option value="7:30 AM">7:30 AM</option>
-                    <option value="8:00 AM">8:00 AM</option>
-                    <!-- Add more time slots here -->
-                    <option value="6:00 PM">6:00 PM</option>
-                </select>
-            </div>
-            <div class="form-column">
-                <input type="text" id="service" placeholder="Search for services" autocomplete="off" list="service-list">
-                <datalist id="service-list">
-                    <option value="Oil Change">
-                    <option value="Tire Rotation">
-                    <option value="Brake Inspection">
-                    <option value="Transmission Service">
-                    <!-- Add more sample services here -->
-                </datalist>
-            </div>
-            <button type="submit">Book Now</button>
-        </form>
-    </div>
-
-    <!-- Add content on the right side -->
-    <div id="right-content">
-        <!-- Add your content here -->
-    </div>
-
-    <script>
-        // JavaScript for filtering options as the user types (case-insensitive)
-        const locationInput = document.getElementById("location");
-        const serviceInput = document.getElementById("service");
-        const locationList = document.getElementById("location-list");
-        const serviceList = document.getElementById("service-list");
-
-        locationInput.addEventListener("input", filterLocationOptions);
-        serviceInput.addEventListener("input", filterServiceOptions);
-
-        function filterLocationOptions() {
-            const inputText = locationInput.value.toLowerCase();
-            const options = locationList.getElementsByTagName("option");
-
-            for (let i = 0; i < options.length; i++) {
-                const option = options[i];
-                const optionText = option.value.toLowerCase();
-
-                if (optionText.includes(inputText)) {
-                    option.style.display = "block";
-                } else {
-                    option.style.display = "none";
-                }
-            }
-        }
-
-        function filterServiceOptions() {
-            const inputText = serviceInput.value.toLowerCase();
-            const options = serviceList.getElementsByTagName("option");
-
-            for (let i = 0; i < options.length; i++) {
-                const option = options[i];
-                const optionText = option.value.toLowerCase();
-
-                if (optionText.includes(inputText)) {
-                    option.style.display = "block";
-                } else {
-                    option.style.display = "none";
-                }
-            }
-        }
-    </script>
+    <form id="booking-form">
+        <div class="form-column">
+            <input type="text" id="location" placeholder="City, State" autocomplete="off" list="location-list">
+            <datalist id="location-list">
+                <option value="New York, NY">
+                <option value="Los Angeles, CA">
+                <option value="Chicago, IL">
+                <option value="Houston, TX">
+                <!-- Add more sample locations here -->
+            </datalist>
+        </div>
+        <div class="form-column">
+            <input type="date" id="date">
+        </div>
+        <div class="form-column">
+            <select id="time">
+                <option value="7:00 AM">7:00 AM</option>
+                <option value="7:30 AM">7:30 AM</option>
+                <option value="8:00 AM">8:00 AM</option>
+                <!-- Add more time slots here -->
+                <option value="6:00 PM">6:00 PM</option>
+            </select>
+        </div>
+        <div class="form-column">
+            <input type="text" id="service" placeholder="Search for services" autocomplete="off" list="service-list">
+            <datalist id="service-list">
+                <option value="Oil Change">
+                <option value="Tire Rotation">
+                <option value="Brake Inspection">
+                <option value="Transmission Service">
+                <!-- Add more sample services here -->
+            </datalist>
+        </div>
+        <button type="submit">Book Now</button>
+    </form>
 </body>
 </html>
