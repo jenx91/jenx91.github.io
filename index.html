@@ -1,209 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Easy Auto Services Booking</title>
     <style>
-        /* CSS for basic styling (you can expand on this) */
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
-        #header {
-            background-color: #fff;
-            width: 100%;
-            padding: 10px;
-        }
-        #header h1 {
-            margin: 0;
-        }
-        #search-box {
-            margin: 20px auto;
-            text-align: center;
-            width: 70%; /* Set the width of the search row */
-            background-color: #fff;
-            padding: 10px;
-        }
-        .input-container {
-            display: inline-block;
-            margin-right: 10px;
-            vertical-align: top; /* Align search boxes to the top */
-        }
-        .search-box-input {
-            width: 100%; /* Make all search box inputs 100% width */
-            padding: 10px; /* Add padding for better appearance */
-            font-family: Arial, sans-serif; /* Set the font family */
-            font-size: 14px; /* Set the font size */
-            height: 40px; /* Set the search box height */
-        }
-        #city-suggestions, #service-suggestions {
-            display: none;
-            position: absolute;
-            width: 100%;
-            background-color: #f1f1f1;
-            z-index: 1;
-        }
-        .suggestion-item {
-            padding: 10px;
-            cursor: pointer;
-        }
-        #service-suggestions {
-            position: relative;
-        }
+        /* Add your CSS styling here */
     </style>
 </head>
 <body>
-    <div id="header">
-        <h1>Book your next auto services today</h1>
-    </div>
-    <div id="search-box">
-        <div class="input-container" id="location-suggestions">
-            <input type="text" id="location" class="search-box-input" placeholder="Enter city or ZIP code">
-            <div id="city-suggestions"></div>
-        </div>
-        <div class="input-container">
-            <input type="date" id="date" class="search-box-input">
-        </div>
-        <div class="input-container">
-            <select id="time" class="search-box-input">
-                <!-- Updated time options from 7 AM to 7 PM -->
-                <option value="07:00">07:00 AM</option>
-                <option value="07:30">07:30 AM</option>
-                <!-- ... (other time options) ... -->
-                <option value="19:00">07:00 PM</option>
-            </select>
-        </div>
-        <div class="input-container" id="service-container">
-            <input type="text" id="service" class="search-box-input" placeholder="Popular searches in your area today (e.g., Oil Change, Brake Repair)" autocomplete="off">
-            <div id="service-suggestions"></div>
-        </div>
-        <button onclick="searchRepairShops()">Search</button>
-    </div>
-    <div id="results">
-        <!-- Search results will be displayed here -->
-    </div>
+    <header>
+        <h1>Easy Auto Services Booking</h1>
+        <p>Book your next auto services today</p>
+    </header>
+    <form id="booking-form">
+        <label for="location">Location:</label>
+        <input type="text" id="location" placeholder="City, State" autocomplete="off" list="location-list">
+        <datalist id="location-list">
+            <option value="New York, NY">
+            <option value="Los Angeles, CA">
+            <option value="Chicago, IL">
+            <option value="Houston, TX">
+            <!-- Add more sample locations here -->
+        </datalist>
 
+        <label for="date">Date:</label>
+        <input type="date" id="date">
+
+        <label for="time">Time:</label>
+        <select id="time">
+            <option value="7:00 AM">7:00 AM</option>
+            <option value="7:30 AM">7:30 AM</option>
+            <option value="8:00 AM">8:00 AM</option>
+            <!-- Add more time slots here -->
+            <option value="6:00 PM">6:00 PM</option>
+        </select>
+
+        <label for="service">Service search in your area:</label>
+        <input type="text" id="service" placeholder="Search for services" autocomplete="off" list="service-list">
+        <datalist id="service-list">
+            <option value="Oil Change">
+            <option value="Tire Rotation">
+            <option value="Brake Inspection">
+            <option value="Transmission Service">
+            <!-- Add more sample services here -->
+        </datalist>
+
+        <button type="submit">Book Now</button>
+    </form>
+
+    <!-- Add your JavaScript code here -->
     <script>
-        const locationInput = document.getElementById("location");
-        const dateInput = document.getElementById("date");
-        const timeSelect = document.getElementById("time");
-        const serviceInput = document.getElementById("service");
-        const citySuggestions = document.getElementById("city-suggestions");
-        const serviceSuggestions = document.getElementById("service-suggestions");
-        const serviceContainer = document.getElementById("service-container");
-
-        // Set the date input to today's date by default
-        const today = new Date().toISOString().split("T")[0];
-        dateInput.value = today;
-
-        // Calculate the nearest 30-minute increment for the time input by default
-        const now = new Date();
-        now.setMinutes(Math.ceil(now.getMinutes() / 30) * 30);
-        const defaultTime = `${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}`;
-        timeSelect.value = defaultTime;
-
-        locationInput.addEventListener("input", function () {
-            const inputValue = this.value.trim();
-            if (inputValue.length === 0) {
-                citySuggestions.style.display = "none";
-                return;
-            }
-
-            // You can replace this with your own API endpoint for city suggestions.
-            // Here, we're simulating suggestions with a simple array.
-            const suggestions = [
-                "New York, NY",
-                "Los Angeles, CA",
-                "Chicago, IL",
-                "Houston, TX",
-                "San Francisco, CA"
-            ];
-
-            // Filter suggestions based on the user's input.
-            const filteredSuggestions = suggestions.filter(suggestion =>
-                suggestion.toLowerCase().includes(inputValue.toLowerCase())
-            );
-
-            // Display matching suggestions in a dropdown within the location input.
-            if (filteredSuggestions.length > 0) {
-                citySuggestions.style.display = "block";
-                citySuggestions.innerHTML = "";
-                filteredSuggestions.forEach(suggestion => {
-                    const suggestionItem = document.createElement("div");
-                    suggestionItem.className = "suggestion-item";
-                    suggestionItem.textContent = suggestion;
-                    suggestionItem.addEventListener("click", function () {
-                        locationInput.value = suggestion;
-                        citySuggestions.style.display = "none";
-                    });
-                    citySuggestions.appendChild(suggestionItem);
-                });
-            } else {
-                citySuggestions.style.display = "none";
-            }
-        });
-
-        serviceInput.addEventListener("click", function () {
-            showServiceSuggestions();
-        });
-
-        serviceInput.addEventListener("input", function () {
-            const inputValue = this.value.trim();
-            if (inputValue.length === 0) {
-                serviceSuggestions.style.display = "none";
-                return;
-            }
-
-            // Simulate auto-suggestions for auto repair services.
-            const serviceSuggestionsArray = ["Oil Change", "Brake Repair", "Tire Replacement", "Engine Diagnostics", "Transmission Repair"];
-
-            // Filter suggestions based on the user's input.
-            const filteredServiceSuggestions = serviceSuggestionsArray.filter(suggestion =>
-                suggestion.toLowerCase().includes(inputValue.toLowerCase())
-            );
-
-            // Display matching service suggestions in a dropdown.
-            if (filteredServiceSuggestions.length > 0) {
-                serviceSuggestions.style.display = "block";
-                serviceSuggestions.innerHTML = "";
-                filteredServiceSuggestions.forEach(suggestion => {
-                    const suggestionItem = document.createElement("div");
-                    suggestionItem.className = "suggestion-item";
-                    suggestionItem.textContent = suggestion;
-                    suggestionItem.addEventListener("click", function () {
-                        serviceInput.value = suggestion;
-                        serviceSuggestions.style.display = "none";
-                    });
-                    serviceSuggestions.appendChild(suggestionItem);
-                });
-            } else {
-                serviceSuggestions.style.display = "none";
-            }
-        });
-
-        function searchRepairShops() {
-            const location = locationInput.value;
-            const selectedDate = dateInput.value;
-            const selectedTime = timeSelect.value;
-            const selectedService = serviceInput.value;
-            // Continue with the search functionality as before, including date, time, and service.
-            // ...
-        }
-
-        // Close service suggestions when clicking outside the service container.
-        document.addEventListener("click", function (event) {
-            if (!serviceContainer.contains(event.target)) {
-                serviceSuggestions.style.display = "none";
-            }
-        });
-
-        function showServiceSuggestions() {
-            const inputValue = serviceInput.value.trim();
-            if (inputValue.length > 0) {
-                serviceSuggestions.style.display = "block";
-            }
-        }
+        // You can add JavaScript for autocomplete suggestions and form submission here
     </script>
 </body>
 </html>
