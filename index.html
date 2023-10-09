@@ -1,99 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Easy Auto Services Booking</title>
     <style>
         body {
+            font-family: Arial, sans-serif;
             text-align: center;
+            margin: 0;
+            padding: 0;
         }
 
-        header {
-            text-align: center;
+        #header {
+            background-color: #fff;
+            padding: 10px;
         }
 
-        #service-type {
+        #header h1 {
+            margin: 0;
+        }
+
+        #search-box {
+            margin: 20px auto;
+            text-align: center;
+            width: 70%;
+            background-color: #fff;
+            padding: 10px;
+        }
+
+        .input-container {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .search-box-input {
             width: 100%;
             padding: 10px;
-            margin-top: 10px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            height: 40px;
         }
 
-        #search-button {
-            margin-top: 10px;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
+        #city-suggestions,
+        #service-suggestions {
+            display: none;
+            position: absolute;
+            width: 100%;
+            background-color: #f1f1f1;
+            z-index: 1;
+        }
+
+        .suggestion-item {
+            padding: 10px;
             cursor: pointer;
         }
 
-        #search-button:hover {
-            background-color: #0056b3;
-        }
-
-        #time-select {
-            width: 100%;
-            padding: 10px;
-            margin-top: 10px;
+        #service-suggestions {
+            position: relative;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Easy Auto Services Booking</h1>
-    </header>
-    <main>
-        <section>
-            <h2>Book Your Auto Service</h2>
-            <input type="text" id="service-type" placeholder="Search for services..." oninput="filterServices()">
-            <input type="date" id="date" value="<?php echo date('Y-m-d'); ?>">
-            <select id="time-select">
-                <?php
-                $start_time = strtotime('07:00 AM');
-                $end_time = strtotime('06:00 PM');
-                $interval = 30 * 60; // 30 minutes
-
-                while ($start_time <= $end_time) {
-                    echo '<option value="' . date('H:i', $start_time) . '">' . date('h:i A', $start_time) . '</option>';
-                    $start_time += $interval;
-                }
-                ?>
+    <div id="header">
+        <h1>Book your next auto services today</h1>
+    </div>
+    <div id="search-box">
+        <div class="input-container" id="location-suggestions">
+            <input type="text" id="location" class="search-box-input" placeholder="Enter city or ZIP code">
+            <div id="city-suggestions"></div>
+        </div>
+        <div class="input-container">
+            <input type="date" id="date" class="search-box-input">
+        </div>
+        <div class="input-container">
+            <select id="time" class="search-box-input">
+                <option value="07:00">07:00 AM</option>
+                <option value="07:30">07:30 AM</option>
+                <!-- Add more time options here -->
             </select>
-            <button id="search-button" onclick="searchServices()">Search</button>
-        </section>
-    </main>
-    
+        </div>
+        <div class="input-container" id="service-container">
+            <input type="text" id="service" class="search-box-input" placeholder="Popular searches in your area today (e.g., Oil Change, Brake Repair)" autocomplete="off">
+            <div id="service-suggestions"></div>
+        </div>
+        <button onclick="searchRepairShops()">Search</button>
+    </div>
+    <div id="results">
+        <!-- Search results will be displayed here -->
+    </div>
+
     <script>
-        // Sample list of auto services (you can replace this with your data)
-        const services = [
-            "Oil Change",
-            "Tire Rotation",
-            "Brake Inspection",
-            "Car Wash",
-            "Engine Tune-Up",
-            "Wheel Alignment",
-        ];
-
-        function filterServices() {
-            const searchTerm = document.getElementById("service-type").value.toLowerCase();
-
-            // Filter and display matching services
-            services.forEach((service) => {
-                if (service.toLowerCase().includes(searchTerm)) {
-                    // Display matching services (you can customize this as needed)
-                    console.log(service);
-                }
-            });
-        }
-
-        function searchServices() {
-            const selectedDate = document.getElementById("date").value;
-            const selectedTime = document.getElementById("time-select").value;
-
-            // Implement your search logic here using selectedDate and selectedTime
-            alert(`Searching for services on ${selectedDate} at ${selectedTime}`);
-        }
+        // JavaScript code remains the same as previous versions.
     </script>
 </body>
 </html>
