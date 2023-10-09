@@ -5,7 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Easy Auto Services Booking</title>
     <style>
-        /* Add your CSS styles here */
+        body {
+            text-align: center;
+        }
+
+        header {
+            text-align: center;
+        }
+
+        #service-type {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        #service-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #service-list li {
+            cursor: pointer;
+            padding: 5px;
+            border: 1px solid #ccc;
+            margin: 5px;
+            background-color: #f9f9f9;
+        }
+
+        #search-button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        #search-button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -15,14 +53,27 @@
     <main>
         <section>
             <h2>Service Details</h2>
-            <label for="service-type">Service Type:</label>
-            <input type="text" id="service-type" placeholder="Search for services..." onkeyup="filterServices()">
+            <input type="text" id="service-type" placeholder="Search for services..." oninput="filterServices()">
             
             <label for="date">Date:</label>
             <input type="date" id="date" value="<?php echo date('Y-m-d'); ?>">
             
             <label for="time">Time:</label>
-            <input type="time" id="time" step="1800" value="<?php echo date('H:i', ceil(time() / 1800) * 1800); ?>">
+            <select id="time">
+                <?php
+                $current_time = time();
+                $start_time = strtotime('07:00 AM');
+                $end_time = strtotime('06:00 PM');
+                $interval = 30 * 60; // 30 minutes
+
+                while ($start_time <= $end_time) {
+                    echo '<option value="' . date('H:i', $start_time) . '">' . date('h:i A', $start_time) . '</option>';
+                    $start_time += $interval;
+                }
+                ?>
+            </select>
+
+            <button id="search-button" onclick="searchServices()">Search</button>
         </section>
         
         <section>
@@ -60,6 +111,11 @@
                     serviceList.appendChild(listItem);
                 }
             });
+        }
+
+        function searchServices() {
+            // Implement your search logic here
+            alert(`Searching for services on ${document.getElementById("date").value} at ${document.getElementById("time").value}`);
         }
 
         function bookService(service) {
