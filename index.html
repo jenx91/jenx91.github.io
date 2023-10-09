@@ -61,24 +61,40 @@
             cursor: pointer;
             padding: 10px 20px; /* Add padding to the button */
         }
+
+        /* Add custom styles for the "Search for services" input */
+        #service {
+            width: calc(100% - 140px); /* Adjust the width to accommodate the button */
+        }
+        
+        /* Styles for the top dropdown list */
+        #city-state-dropdown {
+            max-width: 800px;
+            width: 100%;
+            margin: 0;
+            padding: 10px;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
+    <!-- City, State dropdown at the top -->
+    <select id="city-state-dropdown">
+        <option value="New York, NY">New York, NY</option>
+        <option value="Los Angeles, CA">Los Angeles, CA</option>
+        <option value="Chicago, IL">Chicago, IL</option>
+        <option value="Houston, TX">Houston, TX</option>
+        <!-- Add more options here -->
+    </select>
+
     <header>
         <h1>Easy Auto Services Booking</h1>
         <p>Book your next auto services today</p>
     </header>
     <form id="booking-form">
-        <div class="form-column">
-            <input type="text" id="location" placeholder="City, State" autocomplete="off" list="location-list">
-            <datalist id="location-list">
-                <option value="New York, NY">
-                <option value="Los Angeles, CA">
-                <option value="Chicago, IL">
-                <option value="Houston, TX">
-                <!-- Add more sample locations here -->
-            </datalist>
-        </div>
         <div class="form-column">
             <input type="date" id="date">
         </div>
