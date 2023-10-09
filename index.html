@@ -33,15 +33,14 @@
         <input type="date" id="date">
         <label for="time">Select Time:</label>
         <select id="time">
+            <!-- Default time options updated to nearest 30-minute increments -->
             <option value="09:00">09:00 AM</option>
+            <option value="09:30">09:30 AM</option>
             <option value="10:00">10:00 AM</option>
+            <option value="10:30">10:30 AM</option>
             <option value="11:00">11:00 AM</option>
-            <option value="12:00">12:00 PM</option>
-            <option value="13:00">01:00 PM</option>
-            <option value="14:00">02:00 PM</option>
-            <option value="15:00">03:00 PM</option>
-            <option value="16:00">04:00 PM</option>
-            <option value="17:00">05:00 PM</option>
+            <option value="11:30">11:30 AM</option>
+            <!-- Add more options as needed -->
         </select>
         <button onclick="searchRepairShops()">Search</button>
     </div>
@@ -51,7 +50,19 @@
 
     <script>
         const locationInput = document.getElementById("location");
+        const dateInput = document.getElementById("date");
+        const timeSelect = document.getElementById("time");
         const citySuggestions = document.getElementById("city-suggestions");
+
+        // Set the date input to today's date by default
+        const today = new Date().toISOString().split("T")[0];
+        dateInput.value = today;
+
+        // Calculate the nearest 30-minute increment for the time input by default
+        const now = new Date();
+        now.setMinutes(Math.ceil(now.getMinutes() / 30) * 30);
+        const defaultTime = `${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}`;
+        timeSelect.value = defaultTime;
 
         locationInput.addEventListener("input", function () {
             const inputValue = this.value.trim();
@@ -90,8 +101,8 @@
 
         function searchRepairShops() {
             const location = locationInput.value;
-            const selectedDate = document.getElementById("date").value;
-            const selectedTime = document.getElementById("time").value;
+            const selectedDate = dateInput.value;
+            const selectedTime = timeSelect.value;
             // Continue with the search functionality as before, including date and time.
             // ...
         }
