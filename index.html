@@ -26,10 +26,10 @@
         #search-box {
             margin: 20px auto;
             text-align: center;
-            width: 90%; /* Increase the width of the search row to use more space */
+            width: 90%; /* Reduce the width of the search row */
             padding: 10px;
             display: grid; /* Use CSS Grid for layout */
-            grid-template-columns: 1fr 1fr 1fr 2fr 1fr; /* Define grid columns */
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr; /* Adjust column widths */
             gap: 10px; /* Add gap between grid items */
         }
         .input-container {
@@ -37,10 +37,11 @@
         }
         .input-container select,
         .search-box-input {
-            width: 100%; /* Make all search box inputs 100% width */
             padding: 10px; /* Add padding for better appearance */
             font-family: Arial, sans-serif; /* Apply the common font-family */
             font-size: 16px; /* Apply the common font size */
+            border: 1px solid #ddd; /* Add a border */
+            border-radius: 5px; /* Add rounded edges */
         }
         .search-box-input {
             position: relative; /* Ensure relative positioning for absolute child elements */
