@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Easy Auto Services Booking</title>
+    <title>Easy Auto Services Booking</title><style>
     <style>
         /* CSS for basic styling (you can expand on this) */
         body {
@@ -16,6 +16,7 @@
             width: 100%;
             padding: 10px;
             text-align: center; /* Center text within the header */
+            margin-bottom: 0; /* Remove bottom margin */
         }
         #header h1 {
             font-size: 24px; /* Smaller font size for Easy Auto Services Booking */
@@ -27,46 +28,14 @@
             width: 70%; /* Set the width of the search row */
             background-color: #0074D9; /* Deepish blue background for the search box area */
             padding: 10px;
+            margin-top: 0; /* Remove top margin */
         }
-        .input-container {
-            display: inline-block;
-            margin-right: 10px;
-            vertical-align: top; /* Align search boxes to the top */
-        }
-        .input-container select {
-            width: auto; /* Adjust the width of the time select box */
-        }
-        .search-box-input {
-            width: 100%; /* Make all search box inputs 100% width */
-            padding: 10px; /* Add padding for better appearance */
-        }
-        #city-suggestions, #service-suggestions {
-            display: none;
-            position: absolute;
-            width: 100%;
-            background-color: #f1f1f1;
-            z-index: 1;
-        }
-        .suggestion-item {
-            padding: 10px;
-            cursor: pointer;
-        }
-        #service-suggestions {
-            position: relative;
-        }
-        #search-button {
-            width: 100%; /* Make the search button 100% width */
-            padding: 10px;
-            background-color: #fff; /* White background for the button */
-            color: #0074D9; /* Text color on the button */
-            border: none;
-            cursor: pointer;
-        }
+        /* Rest of your existing CSS */
     </style>
 </head>
 <body>
     <div id="header">
-        <h1>Easy Auto Services Booking</h1>
+        <h1>Book your auto services today</h1>
     </div>
     <div id="search-box">
         <div class="input-container" id="location-suggestions">
