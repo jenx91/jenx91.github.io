@@ -120,7 +120,7 @@
                 const option = options[i];
                 const optionText = option.value.toLowerCase();
 
-                if (optionText.startsWith(inputText)) {
+                if (optionText.includes(inputText)) {
                     option.style.display = "block";
                 } else {
                     option.style.display = "none";
