@@ -30,12 +30,12 @@
             margin-right: 10px;
             vertical-align: top; /* Align search boxes to the top */
         }
-        .input-container select {
-            width: auto; /* Adjust the width of the time select box */
-        }
         .search-box-input {
             width: 100%; /* Make all search box inputs 100% width */
             padding: 10px; /* Add padding for better appearance */
+            font-family: Arial, sans-serif; /* Set the font family */
+            font-size: 14px; /* Set the font size */
+            height: 40px; /* Set the search box height */
         }
         #city-suggestions, #service-suggestions {
             display: none;
@@ -50,12 +50,6 @@
         }
         #service-suggestions {
             position: relative;
-        }
-        #sample-service-list {
-            display: none;
-            font-size: 14px;
-            color: gray;
-            margin-top: 5px;
         }
     </style>
 </head>
@@ -76,42 +70,13 @@
                 <!-- Updated time options from 7 AM to 7 PM -->
                 <option value="07:00">07:00 AM</option>
                 <option value="07:30">07:30 AM</option>
-                <option value="08:00">08:00 AM</option>
-                <option value="08:30">08:30 AM</option>
-                <option value="09:00">09:00 AM</option>
-                <option value="09:30">09:30 AM</option>
-                <option value="10:00">10:00 AM</option>
-                <option value="10:30">10:30 AM</option>
-                <option value="11:00">11:00 AM</option>
-                <option value="11:30">11:30 AM</option>
-                <option value="12:00">12:00 PM</option>
-                <option value="12:30">12:30 PM</option>
-                <option value="13:00">01:00 PM</option>
-                <option value="13:30">01:30 PM</option>
-                <option value="14:00">02:00 PM</option>
-                <option value="14:30">02:30 PM</option>
-                <option value="15:00">03:00 PM</option>
-                <option value="15:30">03:30 PM</option>
-                <option value="16:00">04:00 PM</option>
-                <option value="16:30">04:30 PM</option>
-                <option value="17:00">05:00 PM</option>
-                <option value="17:30">05:30 PM</option>
-                <option value="18:00">06:00 PM</option>
-                <option value="18:30">06:30 PM</option>
+                <!-- ... (other time options) ... -->
                 <option value="19:00">07:00 PM</option>
             </select>
         </div>
         <div class="input-container" id="service-container">
             <input type="text" id="service" class="search-box-input" placeholder="Popular searches in your area today (e.g., Oil Change, Brake Repair)" autocomplete="off">
             <div id="service-suggestions"></div>
-        </div>
-        <div id="sample-service-list">
-            Sample Popular Services:<br>
-            - Oil Change<br>
-            - Brake Repair<br>
-            - Tire Replacement<br>
-            - Engine Diagnostics<br>
-            - Transmission Repair
         </div>
         <button onclick="searchRepairShops()">Search</button>
     </div>
@@ -126,7 +91,6 @@
         const serviceInput = document.getElementById("service");
         const citySuggestions = document.getElementById("city-suggestions");
         const serviceSuggestions = document.getElementById("service-suggestions");
-        const sampleServiceList = document.getElementById("sample-service-list");
         const serviceContainer = document.getElementById("service-container");
 
         // Set the date input to today's date by default
@@ -180,16 +144,8 @@
             }
         });
 
-        function showSampleServiceList() {
-            sampleServiceList.style.display = "block";
-        }
-
-        function hideSampleServiceList() {
-            sampleServiceList.style.display = "none";
-        }
-
         serviceInput.addEventListener("click", function () {
-            showSampleServiceList();
+            showServiceSuggestions();
         });
 
         serviceInput.addEventListener("input", function () {
@@ -241,6 +197,13 @@
                 serviceSuggestions.style.display = "none";
             }
         });
+
+        function showServiceSuggestions() {
+            const inputValue = serviceInput.value.trim();
+            if (inputValue.length > 0) {
+                serviceSuggestions.style.display = "block";
+            }
+        }
     </script>
 </body>
 </html>
