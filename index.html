@@ -1,4 +1,4 @@
-v<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Easy Auto Services Booking</title>
@@ -6,7 +6,7 @@ v<!DOCTYPE html>
         /* CSS for basic styling (you can expand on this) */
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
+            text-align: left; /* Align text to the left */
             margin: 0;
             padding: 0;
         }
@@ -18,14 +18,6 @@ v<!DOCTYPE html>
         }
         #header h1 {
             margin: 0;
-        }
-        #logo {
-            background-color: #fff; /* White background for the logo area */
-            font-size: 18px; /* Smaller font size */
-            font-weight: bold;
-            margin-left: 10px; /* Align to the left */
-            padding: 10px;
-            display: inline-block;
         }
         #search-box {
             margin: 20px auto;
@@ -60,12 +52,19 @@ v<!DOCTYPE html>
         #service-suggestions {
             position: relative;
         }
+        #search-button {
+            width: 100%; /* Make the search button 100% width */
+            padding: 10px;
+            background-color: #0074D9; /* Match the header background color */
+            color: #fff; /* Text color on the button */
+            border: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
     <div id="header">
-        <div id="logo">Easy Auto Services Booking</div>
-        <h1>Book your next auto services today</h1>
+        <h1>Easy Auto Services Booking</h1>
     </div>
     <div id="search-box">
         <div class="input-container" id="location-suggestions">
@@ -87,7 +86,7 @@ v<!DOCTYPE html>
             <input type="text" id="service" class="search-box-input" placeholder="Popular searches in your area today (e.g., Oil Change, Brake Repair)" autocomplete="off">
             <div id="service-suggestions"></div>
         </div>
-        <button onclick="searchRepairShops()">Search</button>
+        <button id="search-button" onclick="searchRepairShops()">Search</button>
     </div>
     <div id="results">
         <!-- Search results will be displayed here -->
@@ -101,16 +100,6 @@ v<!DOCTYPE html>
         const citySuggestions = document.getElementById("city-suggestions");
         const serviceSuggestions = document.getElementById("service-suggestions");
         const serviceContainer = document.getElementById("service-container");
-
-        // Set the date input to today's date by default
-        const today = new Date().toISOString().split("T")[0];
-        dateInput.value = today;
-
-        // Calculate the nearest 30-minute increment for the time input by default
-        const now = new Date();
-        now.setMinutes(Math.ceil(now.getMinutes() / 30) * 30);
-        const defaultTime = `${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}`;
-        timeSelect.value = defaultTime;
 
         locationInput.addEventListener("input", function () {
             const inputValue = this.value.trim();
