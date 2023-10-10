@@ -53,29 +53,41 @@
         table {
             width: 100%;
             border-collapse: collapse; /* Collapse table borders */
+            border: 1px solid #ccc; /* Add 1px border to the table */
         }
         /* Style for table cells */
         td {
             padding: 10px;
             text-align: center;
-            border: none; /* Remove cell borders */
+            border: 1px solid #ccc; /* Add 1px border to table cells */
+        }
+        /* Set font and font size for all table cells */
+        td input[type="text"],
+        td input[type="date"],
+        td select,
+        td input[type="button"] {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
         }
         /* Adjust the width of city, date, and time search boxes */
-        #location, #date, #time {
+        td input[type="text"],
+        td input[type="date"],
+        td select {
             width: 160px; /* Set width to 160px for city, date, and time input elements */
         }
         /* Adjust the width of the service search box */
-        #service {
+        td input[type="text"]#service {
             width: 260px; /* Set width to 260px for the service input element */
         }
         /* Style for the search button */
-        #search-button {
+        td input[type="button"]#search-button {
             padding: 10px;
             font-family: Arial, sans-serif;
             font-size: 16px;
             background-color: transparent;
             color: #fff; /* Set font color to white */
             cursor: pointer;
+            border: none; /* Remove button border */
         }
         /* Rest of the CSS remains unchanged */
         /* ... */
@@ -106,7 +118,7 @@
                         <option value="19:00">07:00 PM</option>
                     </select></td>
                     <td><input type="text" id="service" placeholder="Popular searches in your area today (e.g., Oil Change, Brake Repair)" autocomplete="off"></td>
-                    <td><button id="search-button" onclick="searchRepairShops()">Search</button></td>
+                    <td><input type="button" id="search-button" onclick="searchRepairShops()" value="Search"></td>
                 </tr>
             </table>
         </div>
