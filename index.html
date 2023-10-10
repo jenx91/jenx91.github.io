@@ -41,6 +41,9 @@
             font-size: 36px;
             margin: 0;
         }
+        #search-box-container {
+            text-align: center;
+        }
         #search-box {
             margin: 5px auto 0;
             text-align: center;
@@ -52,8 +55,8 @@
             border-collapse: collapse;
             background-color: #fff;
             border: 1px solid #ccc;
-            margin-left: auto; /* Center align the table horizontally */
-            margin-right: auto;
+            /* Center align the table horizontally */
+            margin: 0 auto;
         }
         /* Style for table cells with 10px padding on left and right */
         td {
@@ -109,23 +112,25 @@
         <header id="secondary-header">
             <h2>Book your auto services today</h2>
         </header>
-        <div id="search-box">
-            <table>
-                <tr>
-                    <td><input type="text" id="location" placeholder="Enter city or ZIP code"></td>
-                    <td><input type="date" id="date"></td>
-                    <td><select id="time">
-                        <option value="07:00">07:00 AM</option>
-                        <option value="07:30">07:30 AM</option>
-                        <option value="08:00">08:00 AM</option>
-                        <!-- ... (other time options) ... -->
-                        <option value="18:30">06:30 PM</option>
-                        <option value="19:00">07:00 PM</option>
-                    </select></td>
-                    <td><input type="text" id="service" placeholder="I need help with ..." autocomplete="off"></td>
-                    <td class="search-button-cell"><input type="button" id="search-button" onclick="searchRepairShops()" value="Search"></td>
-                </tr>
-            </table>
+        <div id="search-box-container">
+            <div id="search-box">
+                <table>
+                    <tr>
+                        <td><input type="text" id="location" placeholder="Enter city or ZIP code"></td>
+                        <td><input type="date" id="date"></td>
+                        <td><select id="time">
+                            <option value="07:00">07:00 AM</option>
+                            <option value="07:30">07:30 AM</option>
+                            <option value="08:00">08:00 AM</option>
+                            <!-- ... (other time options) ... -->
+                            <option value="18:30">06:30 PM</option>
+                            <option value="19:00">07:00 PM</option>
+                        </select></td>
+                        <td><input type="text" id="service" placeholder="I need help with ..." autocomplete="off"></td>
+                        <td class="search-button-cell"><input type="button" id="search-button" onclick="searchRepairShops()" value="Search"></td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
     <div id="results">
