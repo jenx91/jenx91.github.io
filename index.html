@@ -79,9 +79,14 @@
         td input[type="text"]#service {
             width: 260px;
         }
+        /* Style for the search button cell */
+        td.search-button-cell {
+            padding: 0; /* Remove all padding */
+        }
         /* Style for the search button */
         td input[type="button"]#search-button {
-            padding: 10px 0; /* Add 10px padding to the top and bottom */
+            width: 160px;
+            padding: 10px;
             font-family: Arial, sans-serif;
             font-size: 16px;
             background-color: red;
@@ -89,7 +94,6 @@
             cursor: pointer;
             border: none;
         }
-
         /* ... Rest of the CSS remains unchanged ... */
     </style>
 </head>
@@ -118,7 +122,7 @@
                         <option value="19:00">07:00 PM</option>
                     </select></td>
                     <td><input type="text" id="service" placeholder="I need help with ..." autocomplete="off"></td>
-                    <td><input type="button" id="search-button" onclick="searchRepairShops()" value="Search"></td>
+                    <td class="search-button-cell"><input type="button" id="search-button" onclick="searchRepairShops()" value="Search"></td>
                 </tr>
             </table>
         </div>
