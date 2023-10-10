@@ -31,16 +31,20 @@
         .header-container {
             background-color: #0074D9;
             text-align: center;
+            height: 150px; /* Adjust the height as needed */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Vertically center elements */
         }
         header#secondary-header {
             font-size: 36px;
-            margin-bottom: 0; /* Remove margin at the bottom */
+            margin: auto; /* Center horizontally and vertically */
         }
         #search-box {
-            margin: 0; /* Remove margin */
-            padding: 0; /* Remove padding */
+            margin: 5px auto 0; /* Reduced margin-top to 5px */
             text-align: center;
             width: 60%;
+            padding: 10px;
         }
         /* Move the .search-elements div back inside the #search-box container */
         #search-box .search-elements {
