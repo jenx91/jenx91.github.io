@@ -51,19 +51,21 @@
         /* Move the .search-elements div back inside the #search-box container */
         #search-box .search-elements {
             display: flex;
+            flex-wrap: wrap; /* Allow elements to wrap to the next line */
             justify-content: space-between;
             margin-bottom: 10px;
         }
         .input-container {
-            flex: 1;
+            flex: 1; /* Equal width for all input containers */
             margin-right: 10px;
+            margin-bottom: 10px; /* Add margin to create space between elements */
         }
         .input-container:last-child {
             margin-right: 0;
         }
         .input-container select,
         .search-box-input {
-            width: 100%;
+            width: 100%; /* Full width for all inputs */
             padding: 10px;
             font-family: Arial, sans-serif;
             font-size: 16px;
@@ -104,10 +106,6 @@
                         <!-- ... (other time options) ... -->
                         <option value="19:00">07:00 PM</option>
                     </select>
-                </div>
-                <div class="input-container" id="service-container">
-                    <input type="text" id="service" class="search-box-input" placeholder="Popular searches in your area today (e.g., Oil Change, Brake Repair)" autocomplete="off">
-                    <div id="service-suggestions"></div>
                 </div>
             </div>
             <button id="search-button" onclick="searchRepairShops()">Search</button>
