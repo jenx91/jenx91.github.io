@@ -12,14 +12,12 @@
         }
         header {
             color: #fff;
-            padding: 10px;
             text-align: center;
         }
         header#main-header {
             background-color: #fff;
             text-align: left;
-            padding-top: 0;
-            padding-bottom: 0;
+            padding: 0;
         }
         header#main-header h1 {
             color: #0074D9;
@@ -55,11 +53,10 @@
             border-collapse: collapse;
             background-color: #fff;
             border: 1px solid #ccc;
-            margin: 0 auto; /* Center-align the table horizontally */
+            margin: 0 auto;
         }
-        /* Style for table cells with 10px padding on left and right */
         td {
-            padding: 0 10px; /* Add 10px padding to the left and right of each cell */
+            padding: 0 10px;
             text-align: center;
             border: 1px solid #ccc;
         }
@@ -71,23 +68,20 @@
             font-size: 16px;
             border: none;
             outline: none;
+            width: 100%;
         }
-        /* Adjust the width of city, date, and time search boxes */
         td input[type="text"],
         td input[type="date"],
         td select {
             width: 160px;
         }
-        /* Adjust the width of the service search box */
         td input[type="text"]#service {
             width: 260px;
         }
-        /* Style for the search button cell */
         td.search-button-cell {
-            padding-left: 0; /* Remove left padding */
-            padding-right: 0; /* Remove right padding */
+            padding-left: 0;
+            padding-right: 0;
         }
-        /* Style for the search button */
         td input[type="button"]#search-button {
             width: 160px;
             padding: 10px;
@@ -98,7 +92,6 @@
             cursor: pointer;
             border: none;
         }
-        /* ... Rest of the CSS remains unchanged ... */
     </style>
 </head>
 <body>
@@ -121,7 +114,6 @@
                         <option value="07:00">07:00 AM</option>
                         <option value="07:30">07:30 AM</option>
                         <option value="08:00">08:00 AM</option>
-                        <!-- ... (other time options) ... -->
                         <option value="18:30">06:30 PM</option>
                         <option value="19:00">07:00 PM</option>
                     </select></td>
