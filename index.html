@@ -8,23 +8,13 @@
             text-align: left;
             margin: 0;
             padding: 0;
+            background-color: #fff;
         }
         header {
             background-color: #0074D9;
             color: #fff;
             padding: 10px;
-        }
-        #top-div {
-            height: 40px;
-            background-color: #fff;
-            color: #fff;
-            width: 100%;
-        }
-        #header {
             text-align: center;
-            margin-top: 10px;
-            margin-bottom: 10px;
-            padding-bottom: 20px;
         }
         #header h1 {
             font-size: 42px;
@@ -35,18 +25,14 @@
             text-align: center;
             width: 60%;
             padding: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
         .search-elements {
-            flex: 1;
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
+            margin-bottom: 10px;
         }
         .input-container {
             flex: 1;
-            position: relative;
             margin-right: 10px;
         }
         .input-container:last-child {
@@ -61,9 +47,6 @@
             border: 1px solid #ddd;
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        .search-box-input {
-            position: relative;
         }
         #service-suggestions {
             position: absolute;
@@ -94,19 +77,15 @@
             <h1>Book your auto services today</h1>
         </div>
     </header>
-    <section id="search-box">
+    <div id="search-box">
         <div class="search-elements">
             <div class="input-container" id="location-suggestions">
                 <input type="text" id="location" class="search-box-input" placeholder="Enter city or ZIP code">
                 <div id="city-suggestions"></div>
             </div>
-        </div>
-        <div class="search-elements">
             <div class="input-container">
                 <input type="date" id="date" class="search-box-input">
             </div>
-        </div>
-        <div class="search-elements">
             <div class="input-container">
                 <select id="time" class="search-box-input">
                     <option value="07:00">07:00 AM</option>
@@ -115,15 +94,13 @@
                     <option value="19:00">07:00 PM</option>
                 </select>
             </div>
-        </div>
-        <div class="search-elements">
             <div class="input-container" id="service-container">
                 <input type="text" id="service" class="search-box-input" placeholder="Popular searches in your area today (e.g., Oil Change, Brake Repair)" autocomplete="off">
                 <div id="service-suggestions"></div>
             </div>
         </div>
         <button id="search-button" onclick="searchRepairShops()">Search</button>
-    </section>
+    </div>
     <div id="results">
         <!-- Search results will be displayed here -->
     </div>
