@@ -39,22 +39,12 @@
             font-size: 36px;
             margin: 0;
         }
-        #search-box-container {
-            text-align: center;
-        }
-        #search-box {
-            margin: 5px auto 0;
-            text-align: center;
-            width: 60%;
-            padding: 10px;
-            display: inline-block; /* Center-align the search box */
-        }
         table {
-            width: 100%;
+            width: 60%; /* Adjust the width as needed */
+            margin: 0 auto; /* Center-align the table horizontally */
             border-collapse: collapse;
             background-color: #fff;
             border: 1px solid #ccc;
-            margin: 0 auto;
         }
         td {
             padding: 0 10px;
@@ -80,8 +70,7 @@
             width: 260px;
         }
         td.search-button-cell {
-            padding-left: 0;
-            padding-right: 0;
+            padding: 0;
         }
         td input[type="button"]#search-button {
             width: 160px;
@@ -106,23 +95,21 @@
         <header id="secondary-header">
             <h2>Book your auto services today</h2>
         </header>
-        <div id="search-box">
-            <table>
-                <tr>
-                    <td><input type="text" id="location" placeholder="Enter city or ZIP code"></td>
-                    <td><input type="date" id="date"></td>
-                    <td><select id="time">
-                        <option value="07:00">07:00 AM</option>
-                        <option value="07:30">07:30 AM</option>
-                        <option value="08:00">08:00 AM</option>
-                        <option value="18:30">06:30 PM</option>
-                        <option value="19:00">07:00 PM</option>
-                    </select></td>
-                    <td><input type="text" id="service" placeholder="I need help with ..." autocomplete="off"></td>
-                    <td class="search-button-cell"><input type="button" id="search-button" onclick="searchRepairShops()" value="Search"></td>
-                </tr>
-            </table>
-        </div>
+        <table>
+            <tr>
+                <td><input type="text" id="location" placeholder="Enter city or ZIP code"></td>
+                <td><input type="date" id="date"></td>
+                <td><select id="time">
+                    <option value="07:00">07:00 AM</option>
+                    <option value="07:30">07:30 AM</option>
+                    <option value="08:00">08:00 AM</option>
+                    <option value="18:30">06:30 PM</option>
+                    <option value="19:00">07:00 PM</option>
+                </select></td>
+                <td><input type="text" id="service" placeholder="I need help with ..." autocomplete="off"></td>
+                <td class="search-button-cell"><input type="button" id="search-button" onclick="searchRepairShops()" value="Search"></td>
+            </tr>
+        </table>
     </div>
     <div id="results">
         <!-- Search results will be displayed here -->
