@@ -59,7 +59,7 @@
         td {
             padding: 10px;
             text-align: center;
-            border: 1px solid #ccc; /* Add 1px border to table cells */
+            border: none; /* Remove cell borders */
         }
         /* Set font and font size for all table cells */
         td input[type="text"],
@@ -68,6 +68,8 @@
         td input[type="button"] {
             font-family: Arial, sans-serif;
             font-size: 16px;
+            border: none; /* Remove input borders */
+            outline: none; /* Remove input outline */
         }
         /* Adjust the width of city, date, and time search boxes */
         td input[type="text"],
@@ -81,10 +83,11 @@
         }
         /* Style for the search button */
         td input[type="button"]#search-button {
+            width: 160px; /* Set width to match city search box */
             padding: 10px;
             font-family: Arial, sans-serif;
             font-size: 16px;
-            background-color: transparent;
+            background-color: red; /* Change button background color to red */
             color: #fff; /* Set font color to white */
             cursor: pointer;
             border: none; /* Remove button border */
