@@ -25,76 +25,71 @@
             color: #0074D9;
             font-size: 20px;
             margin: 0;
-            line-height: 50px; /* Increased main header height to 50px */
+            line-height: 50px;
         }
-        /* Container for secondary header and search form */
         .header-container {
             background-color: #0074D9;
             text-align: center;
-            height: 250px; /* Updated background container height to 250px */
+            height: 250px;
             display: flex;
             flex-direction: column;
-            justify-content: center; /* Vertically center elements */
-            align-items: center; /* Horizontally center elements */
-            padding: 30px 0; /* Add 30px padding to the top and 0px to the bottom */
+            justify-content: center;
+            align-items: center;
+            padding: 30px 0;
         }
         header#secondary-header {
             font-size: 36px;
-            margin: 0; /* Remove margin */
+            margin: 0;
         }
-        /* Style for the table container */
         #search-box {
-            margin: 5px auto 0; /* Reduced margin-top to 5px */
+            margin: 5px auto 0;
             text-align: center;
             width: 60%;
             padding: 10px;
         }
-        /* Style for the table */
         table {
             width: 100%;
-            border-collapse: collapse; /* Collapse table borders */
-            background-color: #fff; /* Set table background color to white */
-            border: 1px solid #ccc; /* Add a light gray border to the table */
+            border-collapse: collapse;
+            background-color: #fff;
+            border: 1px solid #ccc;
         }
-        /* Style for table cells */
+        /* Style for table cells with 5px padding on left and right */
         td {
-            padding: 0; /* Remove cell padding */
+            padding: 0 5px; /* Add 5px padding to the left and right of each cell */
             text-align: center;
-            border: 1px solid #ccc; /* Add a light gray border to the cells */
+            border: 1px solid #ccc;
         }
-        /* Set font and font size for all table cells */
         td input[type="text"],
         td input[type="date"],
         td select,
         td input[type="button"] {
             font-family: Arial, sans-serif;
             font-size: 16px;
-            border: none; /* Remove input borders */
-            outline: none; /* Remove input outline */
+            border: none;
+            outline: none;
         }
         /* Adjust the width of city, date, and time search boxes */
         td input[type="text"],
         td input[type="date"],
         td select {
-            width: 160px; /* Set width to 160px for city, date, and time input elements */
+            width: 160px;
         }
         /* Adjust the width of the service search box */
         td input[type="text"]#service {
-            width: 260px; /* Set width to 260px for the service input element */
+            width: 260px;
         }
         /* Style for the search button */
         td input[type="button"]#search-button {
-            width: 160px; /* Set width to match city search box */
+            width: 160px;
             padding: 10px;
             font-family: Arial, sans-serif;
             font-size: 16px;
-            background-color: red; /* Change button background color to red */
-            color: #fff; /* Set font color to white */
+            background-color: red;
+            color: #fff;
             cursor: pointer;
-            border: none; /* Remove button border */
+            border: none;
         }
-        /* Rest of the CSS remains unchanged */
-        /* ... */
+        /* ... Rest of the CSS remains unchanged ... */
     </style>
 </head>
 <body>
@@ -104,13 +99,11 @@
             <h1>Easy Auto Services Booking</h1>
         </div>
     </header>
-    <!-- Container for secondary header and search form -->
     <div class="header-container">
         <header id="secondary-header">
             <h2>Book your auto services today</h2>
         </header>
         <div id="search-box">
-            <!-- Table structure for search elements -->
             <table>
                 <tr>
                     <td><input type="text" id="location" placeholder="Enter city or ZIP code"></td>
@@ -118,7 +111,9 @@
                     <td><select id="time">
                         <option value="07:00">07:00 AM</option>
                         <option value="07:30">07:30 AM</option>
+                        <option value="08:00">08:00 AM</option>
                         <!-- ... (other time options) ... -->
+                        <option value="18:30">06:30 PM</option>
                         <option value="19:00">07:00 PM</option>
                     </select></td>
                     <td><input type="text" id="service" placeholder="Popular searches in your area today (e.g., Oil Change, Brake Repair)" autocomplete="off"></td>
