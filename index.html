@@ -58,12 +58,14 @@
         /* Adjust the width of city, date, and time search boxes */
         .input-container input[type="text"],
         .input-container select,
-        .input-container input[type="date"] {
+        .input-container input[type="date"],
+        .input-container input[type="time"],
+        .input-container input[type="button"] {
             width: 200px; /* Set width to 200px for city, date, and time input elements */
             padding: 10px;
             font-family: Arial, sans-serif;
             font-size: 16px;
-            border: 1px solid #ddd;
+            border: none; /* Remove borders */
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
@@ -73,7 +75,7 @@
             padding: 10px;
             font-family: Arial, sans-serif;
             font-size: 16px;
-            border: 1px solid #ddd;
+            border: none; /* Remove borders */
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
@@ -120,9 +122,9 @@
                     <input type="text" id="service" class="search-box-input" placeholder="Popular searches in your area today (e.g., Oil Change, Brake Repair)" autocomplete="off">
                     <div id="service-suggestions"></div>
                 </div>
+                <!-- Move the search button next to the service search box -->
+                <button id="search-button" onclick="searchRepairShops()">Search</button>
             </div>
-            <!-- Move the search button next to the service search box -->
-            <button id="search-button" onclick="searchRepairShops()">Search</button>
         </div>
     </div>
     <div id="results">
