@@ -8,18 +8,25 @@
             text-align: left;
             margin: 0;
             padding: 0;
-            background-color: #fff; /* Set the background color for the entire page */
         }
         #background-container {
+            background-color: #0074D9;
+            color: #fff;
             padding: 10px;
-            color: #000;
+        }
+        #top-section {
+            background-color: #ff5733;
+            height: 40px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
         }
         #header {
             text-align: center;
-            margin-top: 10px;
+            margin-top: 50px;
             margin-bottom: 10px;
             padding-bottom: 20px;
-            background-color: #fff; /* Set the background color for the header */
         }
         #header h1 {
             font-size: 42px;
@@ -28,12 +35,11 @@
         #search-box {
             margin: 10px auto 0;
             text-align: center;
-            width: 60%;
+            width: 70%; /* Adjusted width */
             padding: 10px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #fff; /* Set the background color for the search box area */
         }
         .search-elements {
             flex: 1;
@@ -75,7 +81,7 @@
         #search-button {
             flex: 0.2;
             padding: 10px 20px;
-            background-color: #0074D9;
+            background-color: #ff5733;
             color: #fff;
             border: none;
             border-radius: 5px;
@@ -85,11 +91,42 @@
 </head>
 <body>
     <div id="background-container">
+        <div id="top-section"></div>
         <div id="header">
             <h1>Book your auto services today</h1>
         </div>
         <div id="search-box">
-            <!-- Rest of your content -->
+            <div class="search-elements">
+                <div class="input-container" id="location-suggestions">
+                    <input type="text" id="location" class="search-box-input" placeholder="Enter city or ZIP code">
+                    <div id="city-suggestions"></div>
+                </div>
+            </div>
+            <div class="search-elements">
+                <div class="input-container">
+                    <input type="date" id="date" class="search-box-input">
+                </div>
+            </div>
+            <div class="search-elements">
+                <div class="input-container">
+                    <select id="time" class="search-box-input">
+                        <option value="07:00">07:00 AM</option>
+                        <option value="07:30">07:30 AM</option>
+                        <!-- ... (other time options) ... -->
+                        <option value="19:00">07:00 PM</option>
+                    </select>
+                </div>
+            </div>
+            <div class="search-elements">
+                <div class="input-container" id="service-container">
+                    <input type="text" id="service" class="search-box-input" placeholder="Popular searches in your area today (e.g., Oil Change, Brake Repair)" autocomplete="off">
+                    <div id="service-suggestions"></div>
+                </div>
+            </div>
+            <button id="search-button" onclick="searchRepairShops()">Search</button>
+        </div>
+        <div id="results">
+            <!-- Search results will be displayed here -->
         </div>
     </div>
 
