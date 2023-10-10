@@ -48,18 +48,12 @@
             width: 60%;
             padding: 10px;
         }
-        /* Move the .search-elements div back inside the #search-box container */
-        #search-box .search-elements {
+        /* Table-like row container for search elements */
+        .search-elements {
             display: flex;
             justify-content: space-between;
+            align-items: center; /* Vertically center elements */
             margin-bottom: 10px;
-        }
-        .input-container {
-            flex: 1;
-            margin-right: 10px;
-        }
-        .input-container:last-child {
-            margin-right: 0;
         }
         /* Adjust the width of city, date, and time search boxes */
         .input-container input[type="text"],
@@ -105,7 +99,7 @@
             <h2>Book your auto services today</h2>
         </header>
         <div id="search-box">
-            <!-- Search elements are now back inside the #search-box container -->
+            <!-- Table-like row container for search elements -->
             <div class="search-elements">
                 <div class="input-container" id="location-suggestions">
                     <input type="text" id="location" class="search-box-input" placeholder="Enter city or ZIP code">
@@ -126,9 +120,9 @@
                     <input type="text" id="service" class="search-box-input" placeholder="Popular searches in your area today (e.g., Oil Change, Brake Repair)" autocomplete="off">
                     <div id="service-suggestions"></div>
                 </div>
-                <!-- Move the search button next to the service search box -->
-                <button id="search-button" onclick="searchRepairShops()">Search</button>
             </div>
+            <!-- Move the search button next to the service search box -->
+            <button id="search-button" onclick="searchRepairShops()">Search</button>
         </div>
     </div>
     <div id="results">
