@@ -47,22 +47,52 @@
             width: 60%;
             padding: 10px;
         }
-        /* Center align the table container */
-        .table-container {
-            text-align: center;
-        }
         table {
             width: 100%;
             border-collapse: collapse;
             background-color: #fff;
             border: 1px solid #ccc;
-            margin: 0 auto; /* Center align the table */
+            margin: 0 auto; /* Center align the table horizontally */
         }
         /* Style for table cells with 10px padding on left and right */
         td {
             padding: 0 10px; /* Add 10px padding to the left and right of each cell */
             text-align: center;
             border: 1px solid #ccc;
+        }
+        td input[type="text"],
+        td input[type="date"],
+        td select,
+        td input[type="button"] {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            border: none;
+            outline: none;
+        }
+        /* Adjust the width of city, date, and time search boxes */
+        td input[type="text"],
+        td input[type="date"],
+        td select {
+            width: 160px;
+        }
+        /* Adjust the width of the service search box */
+        td input[type="text"]#service {
+            width: 260px;
+        }
+        /* Style for the search button cell */
+        td.search-button-cell {
+            padding: 0; /* Remove all padding */
+        }
+        /* Style for the search button */
+        td input[type="button"]#search-button {
+            width: 160px;
+            padding: 10px;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            background-color: red;
+            color: #fff;
+            cursor: pointer;
+            border: none;
         }
         /* ... Rest of the CSS remains unchanged ... */
     </style>
@@ -79,25 +109,22 @@
             <h2>Book your auto services today</h2>
         </header>
         <div id="search-box">
-            <!-- Wrap the table in a container div and center it -->
-            <div class="table-container">
-                <table>
-                    <tr>
-                        <td><input type="text" id="location" placeholder="Enter city or ZIP code"></td>
-                        <td><input type="date" id="date"></td>
-                        <td><select id="time">
-                            <option value="07:00">07:00 AM</option>
-                            <option value="07:30">07:30 AM</option>
-                            <option value="08:00">08:00 AM</option>
-                            <!-- ... (other time options) ... -->
-                            <option value="18:30">06:30 PM</option>
-                            <option value="19:00">07:00 PM</option>
-                        </select></td>
-                        <td><input type="text" id="service" placeholder="I need help with ..." autocomplete="off"></td>
-                        <td class="search-button-cell"><input type="button" id="search-button" onclick="searchRepairShops()" value="Search"></td>
-                    </tr>
-                </table>
-            </div>
+            <table>
+                <tr>
+                    <td><input type="text" id="location" placeholder="Enter city or ZIP code"></td>
+                    <td><input type="date" id="date"></td>
+                    <td><select id="time">
+                        <option value="07:00">07:00 AM</option>
+                        <option value="07:30">07:30 AM</option>
+                        <option value="08:00">08:00 AM</option>
+                        <!-- ... (other time options) ... -->
+                        <option value="18:30">06:30 PM</option>
+                        <option value="19:00">07:00 PM</option>
+                    </select></td>
+                    <td><input type="text" id="service" placeholder="I need help with ..." autocomplete="off"></td>
+                    <td class="search-button-cell"><input type="button" id="search-button" onclick="searchRepairShops()" value="Search"></td>
+                </tr>
+            </table>
         </div>
     </div>
     <div id="results">
