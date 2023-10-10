@@ -42,56 +42,37 @@
             font-size: 36px;
             margin: 0; /* Remove margin */
         }
+        /* Style for the table container */
         #search-box {
             margin: 5px auto 0; /* Reduced margin-top to 5px */
             text-align: center;
             width: 60%;
             padding: 10px;
         }
-        /* Table-like row container for search elements */
-        .search-elements {
-            display: flex;
-            justify-content: space-between;
-            align-items: center; /* Vertically center elements */
-            margin-bottom: 10px;
+        /* Style for the table */
+        table {
+            width: 100%;
+            border-collapse: collapse; /* Collapse table borders */
+        }
+        /* Style for table cells */
+        td {
+            padding: 10px;
+            text-align: center;
+            border: none; /* Remove cell borders */
         }
         /* Adjust the width of city, date, and time search boxes */
-        .input-container input[type="text"],
-        .input-container select,
-        .input-container input[type="date"],
-        .input-container input[type="time"],
-        .input-container input[type="button"] {
+        #location, #date, #time {
             width: 160px; /* Set width to 160px for city, date, and time input elements */
-            padding: 10px;
-            font-family: Arial, sans-serif;
-            font-size: 16px;
-            border: none; /* Remove borders */
-            border-radius: 5px; /* Add rounded corners */
-            box-shadow: none;
-            background-color: transparent;
-            color: #fff; /* Set font color to white */
         }
         /* Adjust the width of the service search box */
-        #service-container .search-box-input {
+        #service {
             width: 260px; /* Set width to 260px for the service input element */
-            padding: 10px;
-            font-family: Arial, sans-serif;
-            font-size: 16px;
-            border: none; /* Remove borders */
-            border-radius: 5px; /* Add rounded corners */
-            box-shadow: none;
-            background-color: transparent;
-            color: #fff; /* Set font color to white */
         }
-        /* Adjust the styling of the search button */
+        /* Style for the search button */
         #search-button {
-            width: auto; /* Let the button size be determined by its content */
-            margin-top: 5px; /* Adjust margin-top for spacing */
             padding: 10px;
             font-family: Arial, sans-serif;
             font-size: 16px;
-            border: none; /* Remove borders */
-            border-radius: 5px; /* Add rounded corners */
             background-color: transparent;
             color: #fff; /* Set font color to white */
             cursor: pointer;
@@ -113,30 +94,21 @@
             <h2>Book your auto services today</h2>
         </header>
         <div id="search-box">
-            <!-- Table-like row container for search elements -->
-            <div class="search-elements">
-                <div class="input-container" id="location-suggestions">
-                    <input type="text" id="location" class="search-box-input" placeholder="Enter city or ZIP code">
-                    <div id="city-suggestions"></div>
-                </div>
-                <div class="input-container">
-                    <input type="date" id="date" class="search-box-input">
-                </div>
-                <div class="input-container">
-                    <select id="time" class="search-box-input">
+            <!-- Table structure for search elements -->
+            <table>
+                <tr>
+                    <td><input type="text" id="location" placeholder="Enter city or ZIP code"></td>
+                    <td><input type="date" id="date"></td>
+                    <td><select id="time">
                         <option value="07:00">07:00 AM</option>
                         <option value="07:30">07:30 AM</option>
                         <!-- ... (other time options) ... -->
                         <option value="19:00">07:00 PM</option>
-                    </select>
-                </div>
-                <div class="input-container" id="service-container">
-                    <input type="text" id="service" class="search-box-input" placeholder="Popular searches in your area today (e.g., Oil Change, Brake Repair)" autocomplete="off">
-                    <div id="service-suggestions"></div>
-                </div>
-                <!-- Move the search button next to the service search box -->
-                <button id="search-button" onclick="searchRepairShops()">Search</button>
-            </div>
+                    </select></td>
+                    <td><input type="text" id="service" placeholder="Popular searches in your area today (e.g., Oil Change, Brake Repair)" autocomplete="off"></td>
+                    <td><button id="search-button" onclick="searchRepairShops()">Search</button></td>
+                </tr>
+            </table>
         </div>
     </div>
     <div id="results">
