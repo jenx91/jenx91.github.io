@@ -52,6 +52,7 @@
             border-collapse: collapse;
             background-color: #fff;
             border: 1px solid #ccc;
+            margin: 0 auto; /* Center align the table */
         }
         /* Style for table cells with 10px padding on left and right */
         td {
@@ -116,7 +117,7 @@
                         <option value="18:30">06:30 PM</option>
                         <option value="19:00">07:00 PM</option>
                     </select></td>
-                    <td><input type="text" id="service" placeholder="Popular searches in your area today (e.g., Oil Change, Brake Repair)" autocomplete="off"></td>
+                    <td><input type="text" id="service" placeholder="I need help with ..." autocomplete="off"></td>
                     <td><input type="button" id="search-button" onclick="searchRepairShops()" value="Search"></td>
                 </tr>
             </table>
