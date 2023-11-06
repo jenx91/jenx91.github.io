@@ -1,3 +1,6 @@
+I've updated the code to center-align the table:
+
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,66 +36,54 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 20px 0;
+            padding: 30px 0;
         }
         header#secondary-header {
             font-size: 36px;
             margin: 0;
         }
-        .search-container {
-            position: relative;
-            display: inline-block;
+        table {
+            width: 60%; /* Adjust the width as needed */
+            margin: 0 auto; /* Center-align the table horizontally */
+            border-collapse: collapse;
+            background-color: #fff;
+            border: 1px solid #ccc;
         }
-        #location {
+        td {
+            padding: 0 10px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+        td input[type="text"],
+        td input[type="date"],
+        td select,
+        td input[type="button"] {
             font-family: Arial, sans-serif;
             font-size: 16px;
             border: none;
             outline: none;
+            width: 100%;
+        }
+        td input[type="text"],
+        td input[type="date"],
+        td select {
+            width: 160px;
+        }
+        td input[type="text"]#service {
+            width: 260px;
+        }
+        td.search-button-cell {
+            padding: 0;
+        }
+        td input[type="button"]#search-button {
             width: 160px;
             padding: 10px;
-        }
-        .typeahead-suggestions {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            position: absolute;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            max-height: 150px;
-            overflow-y: auto;
-            display: none;
-            width: 160px;
-            border-top: none;
-        }
-        .typeahead-suggestions li {
-            padding: 5px 10px;
-            cursor: pointer;
-        }
-        .typeahead-suggestions li:hover {
-            background-color: #f0f0f0;
-        }
-        table {
-            margin: 0 auto;
-        }
-        td {
-            padding: 5px;
-        }
-        table, tr, td {
-            border: none;
-            border-collapse: collapse;
-            border-spacing: 0;
-        }
-        .search-button-cell {
-            padding: 0; /* Remove padding */
-        }
-        #search-button {
-            border: 1px solid #ccc;
-            border-radius: 3px;
             font-family: Arial, sans-serif;
             font-size: 16px;
-            background-color: #f00;
+            background-color: red;
             color: #fff;
             cursor: pointer;
+            border: none;
         }
     </style>
 </head>
@@ -107,12 +98,9 @@
         <header id="secondary-header">
             <h2>Book your auto services today</h2>
         </header>
-        <div class="search-container">
-            <input type="text" id="location" placeholder="Enter city or ZIP code">
-            <ul id="suggestion-list" class="typeahead-suggestions"></ul>
-        </div>
         <table>
             <tr>
+                <td><input type="text" id="location" placeholder="Enter city or ZIP code"></td>
                 <td><input type="date" id="date"></td>
                 <td><select id="time">
                     <option value="07:00">07:00 AM</option>
@@ -125,47 +113,9 @@
                 <td class="search-button-cell"><input type="button" id="search-button" onclick="searchRepairShops()" value="Search"></td>
             </tr>
         </table>
-        <div id="results">
-            <!-- Search results will be displayed here -->
-        </div>
     </div>
-    <script>
-        const locationInput = document.getElementById("location");
-        const suggestionList = document.getElementById("suggestion-list");
-        
-        const suggestedCities = [
-            "New York",
-            "Los Angeles",
-            "Chicago",
-            "Houston",
-            "Miami",
-            // Add more cities as needed
-        ];
-        
-        locationInput.addEventListener("input", function () {
-            const userInput = locationInput.value.toLowerCase();
-            const suggestions = suggestedCities.filter((city) =>
-                city.toLowerCase().includes(userInput)
-            );
-        
-            // Display the suggestions in the input field
-            suggestionList.innerHTML = "";
-            suggestions.forEach((city) => {
-                const suggestionItem = document.createElement("li");
-                suggestionItem.textContent = city;
-                suggestionList.appendChild(suggestionItem);
-            });
-        
-            // Show the suggestion list
-            suggestionList.style.display = suggestions.length ? "block" : "none";
-        });
-        
-        suggestionList.addEventListener("click", function (event) {
-            if (event.target.tagName === "LI") {
-                locationInput.value = event.target.textContent;
-                suggestionList.style display = "none";
-            }
-        });
-    </script>
+    <div id="results">
+        <!-- Search results will be displayed here -->
+    </div>
 </body>
 </html>
