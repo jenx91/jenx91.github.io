@@ -5,52 +5,68 @@
 </head>
 <body>
     <h1>Auto Repair Shop Search</h1>
-    
+
     <form id="search-form">
         <label for="city-input">City:</label>
         <input type="text" id="city-input" required><br>
-        
+
         <label for="date-input">Date:</label>
         <input type="date" id="date-input" required><br>
-        
+
         <label for="time-input">Time:</label>
         <input type="time" id="time-input" required><br>
-        
-        <label for="services-input">Services:</label>
+
+        <label for="services-input">Services (comma-separated):</label>
         <input type="text" id="services-input" required><br>
-        
+
         <button type="submit">Search</button>
     </form>
-    
-    <div id="results"></div>
+
+    <select id="shop-select">
+        <option value="" disabled selected>Select an Auto Repair Shop</option>
+        <option value="1">Auto Shop 1</option>
+        <option value="2">Auto Shop 2</option>
+        <option value="3">Auto Shop 3</option>
+        <option value="4">Auto Shop 4</option>
+    </select>
+
+    <div id="appointments"></div>
 
     <script>
-        document.getElementById('search-form').addEventListener('submit', async (event) => {
-            event.preventDefault();
-            
-            const city = document.getElementById('city-input').value;
-            const date = document.getElementById('date-input').value;
-            const time = document.getElementById('time-input').value;
-            const services = document.getElementById('services-input').value.split(',').map(service => service.trim());
-            
-            const response = await fetch('/api/search', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ city, date, time, services }),
-            });
-            
-            const data = await response.json();
-            const resultsContainer = document.getElementById('results');
-            resultsContainer.innerHTML = ''; // Clear previous results
+        const appointmentsData = {
+            1: [
+                { datetime: "2023-11-05 10:00", slots: 3 },
+                { datetime: "2023-11-05 14:00", slots: 2 },
+            ],
+            2: [
+                { datetime: "2023-11-05 11:00", slots: 1 },
+                { datetime: "2023-11-05 15:00", slots: 2 },
+            ],
+            3: [
+                { datetime: "2023-11-05 12:00", slots: 2 },
+                { datetime: "2023-11-05 16:00", slots: 0 },
+            ],
+            4: [
+                { datetime: "2023-11-05 13:00", slots: 4 },
+                { datetime: "2023-11-05 17:00", slots: 1 },
+            ],
+        };
 
-            if (data.length === 0) {
-                resultsContainer.innerHTML = '<p>No results found.</p>';
-            } else {
-                data.forEach(shop => {
-                    resultsContainer.innerHTML += `<p>${shop.name} in ${shop.city}</p>`;
+        const shopSelect = document.getElementById('shop-select');
+        shopSelect.addEventListener('change', () => {
+            const shopId = shopSelect.value;
+            const appointments = appointmentsData[shopId];
+
+            const appointmentsContainer = document.getElementById('appointments');
+            appointmentsContainer.innerHTML = '';
+
+            if (appointments) {
+                appointmentsContainer.innerHTML = '<p>Available Appointments:</p>';
+                appointments.forEach(appointment => {
+                    appointmentsContainer.innerHTML += `<p>${appointment.datetime} (${appointment.slots} slots available)</p>`;
                 });
+            } else {
+                appointmentsContainer.innerHTML = '<p>No available appointments.</p>';
             }
         });
     </script>
