@@ -1,121 +1,58 @@
-I've updated the code to center-align the table:
-
-```html
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Easy Auto Services Booking</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: left;
-            margin: 0;
-            padding: 0;
-            background-color: #fff;
-        }
-        header {
-            color: #fff;
-            text-align: center;
-        }
-        header#main-header {
-            background-color: #fff;
-            text-align: left;
-            padding: 0;
-        }
-        header#main-header h1 {
-            color: #0074D9;
-            font-size: 20px;
-            margin: 0;
-            line-height: 50px;
-        }
-        .header-container {
-            background-color: #0074D9;
-            text-align: center;
-            height: 250px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 30px 0;
-        }
-        header#secondary-header {
-            font-size: 36px;
-            margin: 0;
-        }
-        table {
-            width: 60%; /* Adjust the width as needed */
-            margin: 0 auto; /* Center-align the table horizontally */
-            border-collapse: collapse;
-            background-color: #fff;
-            border: 1px solid #ccc;
-        }
-        td {
-            padding: 0 10px;
-            text-align: center;
-            border: 1px solid #ccc;
-        }
-        td input[type="text"],
-        td input[type="date"],
-        td select,
-        td input[type="button"] {
-            font-family: Arial, sans-serif;
-            font-size: 16px;
-            border: none;
-            outline: none;
-            width: 100%;
-        }
-        td input[type="text"],
-        td input[type="date"],
-        td select {
-            width: 160px;
-        }
-        td input[type="text"]#service {
-            width: 260px;
-        }
-        td.search-button-cell {
-            padding: 0;
-        }
-        td input[type="button"]#search-button {
-            width: 160px;
-            padding: 10px;
-            font-family: Arial, sans-serif;
-            font-size: 16px;
-            background-color: red;
-            color: #fff;
-            cursor: pointer;
-            border: none;
-        }
-    </style>
+    <title>Auto Repair Shop Search</title>
 </head>
 <body>
-    <header id="main-header">
-        <div id="top-div"></div>
-        <div id="header">
-            <h1>Easy Auto Services Booking</h1>
-        </div>
-    </header>
-    <div class="header-container">
-        <header id="secondary-header">
-            <h2>Book your auto services today</h2>
-        </header>
-        <table>
-            <tr>
-                <td><input type="text" id="location" placeholder="Enter city or ZIP code"></td>
-                <td><input type="date" id="date"></td>
-                <td><select id="time">
-                    <option value="07:00">07:00 AM</option>
-                    <option value="07:30">07:30 AM</option>
-                    <option value="08:00">08:00 AM</option>
-                    <option value="18:30">06:30 PM</option>
-                    <option value="19:00">07:00 PM</option>
-                </select></td>
-                <td><input type="text" id="service" placeholder="I need help with ..." autocomplete="off"></td>
-                <td class="search-button-cell"><input type="button" id="search-button" onclick="searchRepairShops()" value="Search"></td>
-            </tr>
-        </table>
-    </div>
-    <div id="results">
-        <!-- Search results will be displayed here -->
-    </div>
+    <h1>Auto Repair Shop Search</h1>
+    
+    <form id="search-form">
+        <label for="city-input">City:</label>
+        <input type="text" id="city-input" required><br>
+        
+        <label for="date-input">Date:</label>
+        <input type="date" id="date-input" required><br>
+        
+        <label for="time-input">Time:</label>
+        <input type="time" id="time-input" required><br>
+        
+        <label for="services-input">Services:</label>
+        <input type="text" id="services-input" required><br>
+        
+        <button type="submit">Search</button>
+    </form>
+    
+    <div id="results"></div>
+
+    <script>
+        document.getElementById('search-form').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            
+            const city = document.getElementById('city-input').value;
+            const date = document.getElementById('date-input').value;
+            const time = document.getElementById('time-input').value;
+            const services = document.getElementById('services-input').value.split(',').map(service => service.trim());
+            
+            const response = await fetch('/api/search', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ city, date, time, services }),
+            });
+            
+            const data = await response.json();
+            const resultsContainer = document.getElementById('results');
+            resultsContainer.innerHTML = ''; // Clear previous results
+
+            if (data.length === 0) {
+                resultsContainer.innerHTML = '<p>No results found.</p>';
+            } else {
+                data.forEach(shop => {
+                    resultsContainer.innerHTML += `<p>${shop.name} in ${shop.city}</p>`;
+                });
+            }
+        });
+    </script>
 </body>
 </html>
